@@ -1,0 +1,66 @@
+/* src/pages/Gallery/GalleryPage.module.css */
+
+.page {
+  background-color: var(--color-dark-brown);
+  color: var(--color-cream);
+  min-height: 100vh;
+}
+
+/* Header Banner */
+.headerSection {
+  position: relative;
+  height: 45vh;
+  min-height: 300px;
+  background-image: url('/src/assets/sweets.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.headerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 5, 4, 0.4) 0%,
+    rgba(30, 18, 16, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.headerContent {
+  margin-top: 60px;
+}
+
+.headerContent h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.goldSubtitle {
+  font-family: var(--font-sans);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+@media (max-width: 968px) {
+  .headerSection {
+    height: 35vh;
+  }
+  
+  .headerContent h1 {
+    font-size: 2.8rem;
+  }
+}

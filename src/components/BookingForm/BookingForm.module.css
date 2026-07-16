@@ -1,0 +1,133 @@
+/* src/components/BookingForm/BookingForm.module.css */
+
+.formContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.headerIcon {
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.formHeader h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-gold-light);
+}
+
+.formHeader p {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  max-width: 550px;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.formGroup label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-cream);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  letter-spacing: 0.5px;
+}
+
+.inputIcon {
+  color: var(--color-gold);
+  opacity: 0.8;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(30, 18, 16, 0.4);
+  border: 1px solid rgba(214, 175, 55, 0.15);
+  color: var(--color-cream);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+  background: rgba(30, 18, 16, 0.75);
+}
+
+/* Custom styling for calendar input icon */
+.formGroup input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(80%) sepia(30%) saturate(1000%) hue-rotate(360deg);
+  cursor: pointer;
+}
+
+/* Dropdown select options background correction */
+.formGroup select option {
+  background-color: var(--color-dark-brown-light);
+  color: var(--color-cream);
+}
+
+/* Validation Errors */
+.inputError {
+  border-color: rgba(239, 83, 80, 0.5) !important;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 10px rgba(239, 83, 80, 0.15) !important;
+}
+
+.errorText {
+  color: rgba(239, 83, 80, 0.9);
+  font-size: 0.75rem;
+  margin-top: 0.1rem;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 2rem 1.5rem;
+  }
+  
+  .row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

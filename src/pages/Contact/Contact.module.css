@@ -1,0 +1,307 @@
+/* src/pages/Contact/Contact.module.css */
+
+.contactPage {
+  background-color: var(--color-dark-brown);
+  color: var(--color-cream);
+  min-height: 100vh;
+}
+
+/* Header Banner */
+.headerSection {
+  position: relative;
+  height: 45vh;
+  min-height: 300px;
+  background-image: url('/src/assets/live_counter.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.headerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 5, 4, 0.4) 0%,
+    rgba(30, 18, 16, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.headerContent {
+  margin-top: 60px;
+}
+
+.headerContent h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.goldSubtitle {
+  font-family: var(--font-sans);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Cards Grid */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.contactCard {
+  border-radius: var(--radius-md);
+  padding: 2.2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  transition: var(--transition-smooth);
+}
+
+.iconCircle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(214, 175, 55, 0.2);
+  background: rgba(122, 20, 20, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+}
+
+.contactCard h3 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+  letter-spacing: 0.5px;
+}
+
+.contactCard p {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-cream);
+}
+
+.contactCard span {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* Splitting Form & Map */
+.formMapGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.formWrapper {
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+}
+
+.formHeader {
+  margin-bottom: 2rem;
+}
+
+.formHeader h2 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.formHeader p {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.formGroup label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-cream);
+  letter-spacing: 0.5px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(30, 18, 16, 0.4);
+  border: 1px solid rgba(214, 175, 55, 0.15);
+  color: var(--color-cream);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: var(--color-gold);
+  background: rgba(30, 18, 16, 0.75);
+}
+
+.inputError {
+  border-color: rgba(239, 83, 80, 0.5) !important;
+}
+
+.errorText {
+  color: rgba(239, 83, 80, 0.9);
+  font-size: 0.75rem;
+}
+
+/* Map Wrapper */
+.mapWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.mapCard {
+  flex-grow: 1;
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(135deg, rgba(30, 18, 16, 0.7) 0%, rgba(10, 5, 4, 0.85) 100%);
+  border: 1px solid rgba(214, 175, 55, 0.15);
+  overflow: hidden;
+}
+
+/* Grid lines background decoration for radar visual style */
+.mapCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(214, 175, 55, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214, 175, 55, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.mapBackgroundOverlay {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 320px;
+}
+
+.mapCompassIcon {
+  color: var(--color-gold);
+  opacity: 0.7;
+  animation: spinSlow 30s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mapCard h3 {
+  font-family: var(--font-sans);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+}
+
+.addressRow {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.mapIcon {
+  color: var(--color-gold);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.addressRow p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.infoRow p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  opacity: 0.65;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .headerSection {
+    height: 35vh;
+  }
+  
+  .headerContent h1 {
+    font-size: 2.8rem;
+  }
+  
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+  
+  .formMapGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .mapCard {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .formWrapper {
+    padding: 1.5rem;
+  }
+}

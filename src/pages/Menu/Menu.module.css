@@ -1,0 +1,243 @@
+/* src/pages/Menu/Menu.module.css */
+
+.menuPage {
+  background-color: var(--color-dark-brown);
+  color: var(--color-cream);
+  min-height: 100vh;
+}
+
+/* Header Banner */
+.headerSection {
+  position: relative;
+  height: 45vh;
+  min-height: 300px;
+  background-image: url('/src/assets/meals.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.headerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 5, 4, 0.4) 0%,
+    rgba(30, 18, 16, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.headerContent {
+  margin-top: 60px;
+}
+
+.headerContent h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.goldSubtitle {
+  font-family: var(--font-sans);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Search Bar */
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
+.searchWrapper {
+  position: relative;
+  flex: 1;
+  max-width: 500px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 3rem;
+  background: rgba(45, 29, 26, 0.5);
+  border: 1px solid rgba(214, 175, 55, 0.15);
+  border-radius: var(--radius-full);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.searchInput:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  background: rgba(45, 29, 26, 0.8);
+}
+
+.filterHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-gold-light);
+}
+
+/* Horizontal Tabs */
+.tabsWrapper {
+  overflow-x: auto;
+  margin-bottom: 2.5rem;
+  padding-bottom: 0.5rem;
+  /* hide scrollbars but support scrolling */
+  scrollbar-width: none; /* Firefox */
+}
+
+.tabsWrapper::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.tabs {
+  display: flex;
+  gap: 0.8rem;
+  white-space: nowrap;
+}
+
+.tabBtn {
+  padding: 0.6rem 1.4rem;
+  background: rgba(255, 248, 240, 0.05);
+  border: 1px solid rgba(214, 175, 55, 0.12);
+  color: var(--color-cream);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.tabBtn:hover {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--color-gold);
+}
+
+.activeTab {
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold)) !important;
+  color: var(--color-dark-brown) !important;
+  font-weight: 600;
+  border-color: var(--color-gold) !important;
+  box-shadow: var(--shadow-gold);
+}
+
+/* Stats */
+.resultStats {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.resultStats span {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(45, 29, 26, 0.3);
+  border: 1px dashed rgba(214, 175, 55, 0.2);
+  border-radius: var(--radius-md);
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.emptyIcon {
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+  opacity: 0.7;
+}
+
+.emptyState h3 {
+  font-family: var(--font-sans);
+  font-size: 1.4rem;
+  color: var(--color-gold-light);
+  margin-bottom: 0.8rem;
+}
+
+.emptyState p {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  max-width: 450px;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .headerSection {
+    height: 35vh;
+  }
+  
+  .headerContent h1 {
+    font-size: 2.8rem;
+  }
+  
+  .filterBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .searchWrapper {
+    max-width: 100%;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}

@@ -1,0 +1,265 @@
+/* src/pages/About/About.module.css */
+
+.aboutPage {
+  background-color: var(--color-dark-brown);
+  color: var(--color-cream);
+  min-height: 100vh;
+}
+
+/* Header Banner */
+.headerSection {
+  position: relative;
+  height: 45vh;
+  min-height: 300px;
+  background-image: url('/src/assets/biryani.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.headerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 5, 4, 0.4) 0%,
+    rgba(30, 18, 16, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.headerContent {
+  margin-top: 60px;
+}
+
+.headerContent h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.goldSubtitle {
+  font-family: var(--font-sans);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Profile Grid */
+.profileGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
+  align-items: flex-start;
+}
+
+.aboutImageWrapper {
+  position: relative;
+  padding: 1rem;
+}
+
+.aboutImg {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+  position: relative;
+  z-index: 2;
+}
+
+.frameDecoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 90%;
+  height: 90%;
+  border: 2px solid var(--color-gold);
+  border-radius: var(--radius-md);
+  z-index: 1;
+  transform: translate(-30px, 30px);
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileText p {
+  font-size: 1.05rem;
+  opacity: 0.85;
+}
+
+/* Mission & Vision */
+.mvRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.mvCard {
+  background: rgba(45, 29, 26, 0.3);
+  border: 1px solid rgba(214, 175, 55, 0.08);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+
+.mvTitle {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--color-gold);
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mvText {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+/* Pillars Section */
+.pillarsSection {
+  background: linear-gradient(180deg, var(--color-dark-brown) 0%, rgba(122, 20, 20, 0.1) 50%, var(--color-dark-brown) 100%);
+  padding: 4rem 0;
+  border-top: 1px solid rgba(214, 175, 55, 0.05);
+  border-bottom: 1px solid rgba(214, 175, 55, 0.05);
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pillarItem {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.pillarIcon {
+  color: var(--color-gold);
+}
+
+.pillarItem h4 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+}
+
+.pillarItem p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+/* Why Choose Us Grid */
+.whyChooseGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.whyCard {
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: var(--transition-smooth);
+}
+
+.iconContainer {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  background: rgba(122, 20, 20, 0.15);
+  border: 1px solid rgba(214, 175, 55, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+}
+
+.cardIcon {
+  color: var(--color-gold);
+}
+
+.cardTitle {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+}
+
+.cardDesc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .whyChooseGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 968px) {
+  .headerSection {
+    height: 35vh;
+  }
+  
+  .headerContent h1 {
+    font-size: 2.8rem;
+  }
+  
+  .profileGrid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+  
+  .aboutImg {
+    height: 380px;
+  }
+  
+  .frameDecoration {
+    transform: translate(-20px, 20px);
+  }
+  
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .mvRow {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .whyChooseGrid {
+    grid-template-columns: 1fr;
+  }
+}
