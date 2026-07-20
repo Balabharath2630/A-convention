@@ -4,31 +4,42 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, ChevronRight } from 'lucide-react';
 import styles from './Hero.module.css';
+import heroImage from '../../assets/hero/hero.jpeg';
+import biryaniImage from '../../assets/hero/biryani.jpeg';
+import mealsImage from '../../assets/hero/meals.jpeg';
+import sweetsImage from '../../assets/hero/sweets.jpeg';
+import liveCounterImage from '../../assets/hero/live-counter.jpeg';
 
 const HERO_SLIDES = [
   {
-    image: '/src/assets/biryani.png',
+    image: heroImage,
+    title: 'Premium Indian Catering',
+    subtitle: 'ARUN CATERERS Guntur',
+    caption: 'Crafting Royal Gastronomical Journeys Since 2011'
+  },
+  {
+    image: biryaniImage,
     title: 'Authentic Telugu Catering',
     subtitle: 'for Every Celebration',
     caption: 'Traditional Taste • Premium Service • Memorable Events'
   },
   {
-    image: '/src/assets/meals.png',
+    image: mealsImage,
     title: 'Royal Andhra Feast',
     subtitle: 'The Soul of Heritage',
     caption: 'Genuine Ingredients • Time-Honored Recipes • Pure Bliss'
   },
   {
-    image: '/src/assets/live_counter.png',
+    image: sweetsImage,
+    title: 'Premium Sweet Counters',
+    subtitle: 'Golden Sweet Delights',
+    caption: 'Desi Ghee Artistry • Traditional Sweets • Royal Presentation'
+  },
+  {
+    image: liveCounterImage,
     title: 'Grand Live Stations',
     subtitle: 'Sizzle & Aroma Live',
     caption: 'Professional Chefs • Visual Culinary Art • Fresh & Hot'
-  },
-  {
-    image: '/src/assets/sweets.png',
-    title: 'Luxury Sweet Counters',
-    subtitle: 'Golden Sweet Delights',
-    caption: 'Desi Ghee Artistry • Traditional Sweets • Royal Presentation'
   }
 ];
 
@@ -70,7 +81,7 @@ const Hero = () => {
         </AnimatePresence>
       </div>
 
-      {/* Floating Decorative Spice Elements (Luxury Micro-interaction) */}
+      {/* Floating Decorative Spice Elements (Premium Micro-interaction) */}
       <div className={styles.floatingContainer}>
         <motion.div 
           className={`${styles.floatingElement} ${styles.starAnise}`}
@@ -107,7 +118,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <span className={styles.goldSubtitle}>A Caterings Presents</span>
+            <span className={styles.goldSubtitle}>ARUN CATERERS Presents</span>
           </motion.div>
           
           <AnimatePresence mode="wait">

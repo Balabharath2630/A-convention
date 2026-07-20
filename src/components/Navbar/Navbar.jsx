@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoWhite from '../../assets/logo/logo-white.png';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
@@ -32,10 +33,10 @@ const Navbar = () => {
       <div className={styles.container}>
         {/* Logo Section */}
         <Link to="/" className={styles.logoContainer} onClick={() => setMobileMenuOpen(false)}>
-          <img src="/src/assets/logo.png" alt="A Caterings Logo" className={styles.logo} />
+          <img src={logoWhite} alt="ARUN CATERERS Logo" className={styles.logo} />
           <div className={styles.logoText}>
-            <span className={styles.brandName}>A CATERINGS</span>
-            <span className={styles.brandSubtitle}>LUXURY SERVICES</span>
+            <span className={styles.brandName}>ARUN CATERERS</span>
+            <span className={styles.brandSubtitle}>WEDDING & EVENT CATERERS</span>
           </div>
         </Link>
 

@@ -29,7 +29,7 @@ const GalleryPage = () => {
         <div className="container">
           <div className="section-header" style={{ marginBottom: '3rem' }}>
             <span className={styles.goldSubtitle}>Moments we Served</span>
-            <h2 className="text-gold-gradient">Glimpses of Luxury</h2>
+            <h2 className="text-gold-gradient">Serving Every Celebration</h2>
             <p>Explore our premium catering presentations, buffet structures, and culinary designs.</p>
           </div>
 

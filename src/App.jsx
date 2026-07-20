@@ -6,6 +6,7 @@ import { Phone, MessageCircle, ArrowUp } from 'lucide-react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import { OWNER_WHATSAPP } from './config/constants';
+import logoWhite from './assets/logo/logo-white.png';
 
 // Lazy load pages
 const Home = lazy(() => import('./pages/Home/Home'));
@@ -21,6 +22,7 @@ function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
+  const isAdminRoute = location.pathname === '/admin';
 
   // Simulate loading screen
   useEffect(() => {
@@ -58,11 +60,11 @@ function App() {
   };
 
   const handleCall = () => {
-    window.open('tel:+919876543210', '_self');
+    window.open('tel:+917075812345', '_self');
   };
 
   const handleWhatsApp = () => {
-    window.open(`https://wa.me/${OWNER_WHATSAPP}?text=Hello%20A%20Caterings%2C%20I%20would%20like%20to%20inquire%20about%20your%20catering%20services.`, '_blank');
+    window.open(`https://wa.me/${OWNER_WHATSAPP}?text=Hello%20ARUN%20CATERERS%2C%20I%20would%20like%20to%20inquire%20about%20your%20catering%20services.`, '_blank');
   };
 
   return (
@@ -89,8 +91,8 @@ function App() {
             }}
           >
             <motion.img
-              src="/src/assets/logo.png"
-              alt="A Caterings Logo"
+              src={logoWhite}
+              alt="ARUN CATERERS Logo"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1, ease: 'easeOut' }}
@@ -119,12 +121,14 @@ function App() {
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
           
           {/* Scroll Progress Indicator */}
-          <div className="scroll-progress-container">
-            <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
-          </div>
+          {!isAdminRoute && (
+            <div className="scroll-progress-container">
+              <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
+            </div>
+          )}
 
           {/* Sticky Header */}
-          <Navbar />
+          {!isAdminRoute && <Navbar />}
 
           {/* Main Content Area with Page Transitions */}
           <main style={{ flexGrow: 1 }}>
@@ -149,10 +153,11 @@ function App() {
           </main>
 
           {/* Site Footer */}
-          <Footer />
+          {!isAdminRoute && <Footer />}
 
           {/* Floating Actions Panel */}
-          <div style={{ position: 'fixed', bottom: '2.5rem', right: '1.5rem', zIndex: 1000, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+          {!isAdminRoute && (
+            <div style={{ position: 'fixed', bottom: '2.5rem', right: '1.5rem', zIndex: 1000, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             
             {/* Scroll to Top */}
             <AnimatePresence>
@@ -224,7 +229,8 @@ function App() {
             >
               <MessageCircle size={22} />
             </motion.button>
-          </div>
+            </div>
+          )}
         </div>
       )}
     </>

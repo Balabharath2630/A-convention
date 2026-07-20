@@ -1,7 +1,8 @@
 // src/pages/Menu/Menu.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, SlidersHorizontal, AlertCircle } from 'lucide-react';
+import { Search, SlidersHorizontal, AlertCircle, ArrowRight } from 'lucide-react';
 import { INITIAL_MENU_ITEMS } from '../../config/constants';
 import MenuCard from '../../components/MenuCard/MenuCard';
 import styles from './Menu.module.css';
@@ -19,20 +20,58 @@ const CATEGORIES = [
 ];
 
 const Menu = () => {
+  const navigate = useNavigate();
   const [menuItems, setMenuItems] = useState([]);
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const categoryRefs = useRef({});
+  const isFirstRender = useRef(true);
+
+  const [selectedItems, setSelectedItems] = useState(() => {
+    const saved = localStorage.getItem('selected_catering_menu');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const handleToggleSelect = (item) => {
+    setSelectedItems((prev) => {
+      const isAlreadySelected = prev.some((i) => i.id === item.id);
+      let updated;
+      if (isAlreadySelected) {
+        updated = prev.filter((i) => i.id !== item.id);
+      } else {
+        updated = [...prev, item];
+      }
+      localStorage.setItem('selected_catering_menu', JSON.stringify(updated));
+      return updated;
+    });
+  };
 
   // Synchronize menu items with LocalStorage
   useEffect(() => {
-    const storedMenu = localStorage.getItem('acaterings_menu');
-    if (storedMenu) {
+    const storedMenu = localStorage.getItem('aruncaterers_menu');
+    if (storedMenu && JSON.parse(storedMenu).length === INITIAL_MENU_ITEMS.length) {
       setMenuItems(JSON.parse(storedMenu));
     } else {
-      localStorage.setItem('acaterings_menu', JSON.stringify(INITIAL_MENU_ITEMS));
+      localStorage.setItem('aruncaterers_menu', JSON.stringify(INITIAL_MENU_ITEMS));
       setMenuItems(INITIAL_MENU_ITEMS);
     }
   }, []);
+
+  // Smooth scroll active category chip into center view on mobile/horizontal scroll
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const activeEl = categoryRefs.current[activeCategory];
+    if (activeEl) {
+      activeEl.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest'
+      });
+    }
+  }, [activeCategory]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -112,6 +151,7 @@ const Menu = () => {
               {CATEGORIES.map((category) => (
                 <button
                   key={category}
+                  ref={(el) => (categoryRefs.current[category] = el)}
                   className={`${styles.tabBtn} ${activeCategory === category ? styles.activeTab : ''}`}
                   onClick={() => handleCategorySelect(category)}
                 >
@@ -141,7 +181,11 @@ const Menu = () => {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <MenuCard item={item} />
+                  <MenuCard 
+                    item={item} 
+                    isSelected={selectedItems.some((i) => i.id === item.id)}
+                    onToggleSelect={handleToggleSelect}
+                  />
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -172,6 +216,36 @@ const Menu = () => {
 
         </div>
       </section>
+
+      {/* Floating Summary Button */}
+      <AnimatePresence>
+        {selectedItems.length > 0 && (
+          <div className={styles.floatingSummary}>
+            <motion.button 
+              onClick={() => navigate('/booking')} 
+              className="btn btn-gold btn-lg"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 50, scale: 0.9 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                boxShadow: '0 8px 30px rgba(214, 175, 55, 0.4)',
+                borderRadius: '30px',
+                padding: '1rem 2.2rem',
+                fontSize: '1.05rem',
+                letterSpacing: '1px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.6rem'
+              }}
+            >
+              My Selected Menu ({selectedItems.length})
+              <ArrowRight size={18} />
+            </motion.button>
+          </div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

@@ -1,6 +1,55 @@
 // src/config/constants.js
+import biryaniImage from '../assets/hero/biryani.jpeg';
+import mealsImage from '../assets/hero/meals.jpeg';
+import sweetsImage from '../assets/hero/sweets.jpeg';
+import liveCounterImage from '../assets/hero/live-counter.jpeg';
+import alooFry from '../assets/menu/veg/aloo-fry.jpeg';
+import beetrootCurry from '../assets/menu/veg/beetroot-curry.jpeg';
+import bendakayaFry from '../assets/menu/veg/bendakaya-fry.jpeg';
+import cabbageCurry from '../assets/menu/veg/cabbage-curry.jpeg';
+import capsicumCurry from '../assets/menu/veg/capsicum-curry.jpeg';
+import dalFry from '../assets/menu/veg/dal-fry.jpeg';
+import guttiVankaya from '../assets/menu/veg/gutti-vankaya.jpeg';
+import mixVegetableCurry from '../assets/menu/veg/mix-vegetable-curry.jpeg';
+import mushroomCurry from '../assets/menu/veg/mushroom-curry.jpeg';
+import palakPaneer from '../assets/menu/veg/palak-paneer.jpeg';
+import paneerButterMasala from '../assets/menu/veg/paneer-butter-masala.jpeg';
+import rasam from '../assets/menu/veg/rasam.jpeg';
+import sambar from '../assets/menu/veg/sambar.jpeg';
+import tomatoPappu from '../assets/menu/veg/tomato-pappu.jpeg';
+import vegetableKurma from '../assets/menu/veg/vegetable-kurma.jpeg';
+import andhraChickenBiryani from '../assets/menu/non-veg/andhra-chicken-biryani.jpeg';
+import andhraChickenCurry from '../assets/menu/non-veg/andhra-chicken-curry.jpeg';
+import andhraFishFry from '../assets/menu/non-veg/andhra-fish-fry.jpeg';
+import andhraMuttonCurry from '../assets/menu/non-veg/andhra-mutton-curry.jpeg';
+import apolloFish from '../assets/menu/non-veg/apollo-fish.jpeg';
+import chicken65 from '../assets/menu/non-veg/chicken-65.jpeg';
+import chickenDumBiryani from '../assets/menu/non-veg/chicken-dum-biryani.jpeg';
+import chickenFry from '../assets/menu/non-veg/chicken-fry.jpeg';
+import chickenRoast from '../assets/menu/non-veg/chicken-roast.jpeg';
+import gonguraChicken from '../assets/menu/non-veg/gongura-chicken.jpeg';
+import keemaCurry from '../assets/menu/non-veg/keema-curry.jpeg';
+import muttonDumBiryani from '../assets/menu/non-veg/mutton-dum-biryani.jpeg';
+import muttonFry from '../assets/menu/non-veg/mutton-fry.jpeg';
+import natukodiPulusu from '../assets/menu/non-veg/natukodi-pulusu.jpeg';
+import royyalaIguru from '../assets/menu/non-veg/royyala-iguru.jpeg';
 
-export const OWNER_WHATSAPP = "919876543210";
+import idliImage from '../assets/menu/breakfast/idli.jpeg';
+import gheeIdliImage from '../assets/menu/breakfast/ghee-idli.jpeg';
+import meduVadaImage from '../assets/menu/breakfast/medu-vada.jpeg';
+import pooriImage from '../assets/menu/breakfast/poori.jpeg';
+import masalaDosaImage from '../assets/menu/breakfast/masala-dosa.jpeg';
+import plainDosaImage from '../assets/menu/breakfast/plain-dosa.jpeg';
+import pesarattuImage from '../assets/menu/breakfast/pesarattu.jpeg';
+import upmaImage from '../assets/menu/breakfast/upma.jpeg';
+import pongalImage from '../assets/menu/breakfast/pongal.jpeg';
+
+import mirchiBajji from '../assets/menu/snacks/mirchi-bajji.jpeg';
+import punugulu from '../assets/menu/snacks/punugulu.jpeg';
+import onionPakoda from '../assets/menu/snacks/onion-pakoda.jpeg';
+import mixedVegPakoda from '../assets/menu/snacks/mixed-veg-pakoda.jpeg';
+
+export const OWNER_WHATSAPP = "917075812345";
 
 export const ADMIN_CREDENTIALS = {
   username: "admin",
@@ -15,17 +64,17 @@ export const INITIAL_MENU_ITEMS = [
     category: "Non Veg",
     tags: ["Lunch", "Dinner"],
     price: 350,
-    image: "/src/assets/biryani.png",
+    image: chickenDumBiryani,
     available: true
   },
   {
     id: "m2",
-    name: "Mutton Curry (Andhra Style)",
+    name: "Andhra Mutton Curry",
     description: "Tender goat meat slow-cooked in a fiery and aromatic gravy made of poppy seeds, coconut, and freshly ground spices.",
     category: "Non Veg",
     tags: ["Lunch", "Dinner"],
     price: 450,
-    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=600",
+    image: andhraMuttonCurry,
     available: true
   },
   {
@@ -35,7 +84,7 @@ export const INITIAL_MENU_ITEMS = [
     category: "Non Veg",
     tags: ["Lunch", "Dinner"],
     price: 320,
-    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=600",
+    image: gonguraChicken,
     available: true
   },
   {
@@ -45,7 +94,7 @@ export const INITIAL_MENU_ITEMS = [
     category: "Veg",
     tags: ["Lunch"],
     price: 250,
-    image: "/src/assets/meals.png",
+    image: mealsImage,
     available: true
   },
   {
@@ -55,7 +104,7 @@ export const INITIAL_MENU_ITEMS = [
     category: "Veg",
     tags: ["Lunch", "Dinner"],
     price: 220,
-    image: "https://images.unsplash.com/photo-1601050690597-df056fb4ce78?auto=format&fit=crop&q=80&w=600",
+    image: guttiVankaya,
     available: true
   },
   {
@@ -63,19 +112,19 @@ export const INITIAL_MENU_ITEMS = [
     name: "Special Pulihora",
     description: "Traditional tamarind rice cooked with roasted peanuts, green chilies, mustard seeds, curry leaves, and a touch of asafoetida.",
     category: "Veg",
-    tags: ["Breakfast", "Lunch"],
+    tags: ["Lunch"],
     price: 180,
     image: "https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&q=80&w=600",
     available: true
   },
   {
     id: "m7",
-    name: "Spiced Fish Fry",
+    name: "Andhra Fish Fry",
     description: "Fresh catch of the day marinated in Nellore spices and shallow fried to a perfect golden crisp.",
     category: "Non Veg",
     tags: ["Snacks", "Dinner"],
     price: 380,
-    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=600",
+    image: andhraFishFry,
     available: true
   },
   {
@@ -83,7 +132,7 @@ export const INITIAL_MENU_ITEMS = [
     name: "Crispy Garelu with Chutney",
     description: "Deep-fried black gram lentil fritters, crispy on the outside, fluffy inside, served with fresh coconut and tomato chutneys.",
     category: "Veg",
-    tags: ["Breakfast", "Snacks"],
+    tags: ["Snacks"],
     price: 140,
     image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=600",
     available: true
@@ -95,7 +144,7 @@ export const INITIAL_MENU_ITEMS = [
     category: "Sweets",
     tags: ["Snacks", "Sweets"],
     price: 200,
-    image: "/src/assets/sweets.png",
+    image: sweetsImage,
     available: true
   },
   {
@@ -113,9 +162,9 @@ export const INITIAL_MENU_ITEMS = [
     name: "Live Dosa Counter",
     description: "Live station serving hot, crispy, and custom-ordered varieties of dosas including Masala Dosa, Ghee Roast, and Cheese Dosa with piping hot sambar.",
     category: "Live Counters",
-    tags: ["Breakfast", "Dinner", "Live Counters"],
+    tags: ["Dinner", "Live Counters"],
     price: 280,
-    image: "/src/assets/live_counter.png",
+    image: liveCounterImage,
     available: true
   },
   {
@@ -127,6 +176,436 @@ export const INITIAL_MENU_ITEMS = [
     price: 400,
     image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&q=80&w=600",
     available: true
+  },
+  {
+    id: "m13",
+    name: "Paneer Butter Masala",
+    description: "Soft cottage cheese cubes cooked in a rich, creamy, and mildly sweet tomato-onion gravy.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 280,
+    image: paneerButterMasala,
+    available: true
+  },
+  {
+    id: "m14",
+    name: "Palak Paneer",
+    description: "Fresh cottage cheese cubes in a smooth, creamy spiced spinach gravy.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 270,
+    image: palakPaneer,
+    available: true
+  },
+  {
+    id: "m15",
+    name: "Mix Vegetable Curry",
+    description: "A medley of fresh seasonal vegetables cooked in a flavorful spiced gravy.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 240,
+    image: mixVegetableCurry,
+    available: true
+  },
+  {
+    id: "m16",
+    name: "Vegetable Kurma",
+    description: "Seasonal vegetables cooked in a rich, spiced coconut and cashew nut gravy.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 250,
+    image: vegetableKurma,
+    available: true
+  },
+  {
+    id: "m17",
+    name: "Mushroom Curry",
+    description: "Fresh mushrooms simmered in a semi-dry spiced onion-tomato masala.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 260,
+    image: mushroomCurry,
+    available: true
+  },
+  {
+    id: "m18",
+    name: "Tomato Pappu",
+    description: "Traditional Andhra style yellow lentils cooked with tangy tomatoes, tempered with ghee and mustard seeds.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 180,
+    image: tomatoPappu,
+    available: true
+  },
+  {
+    id: "m19",
+    name: "Dal Fry",
+    description: "Yellow lentils cooked with aromatic spices, tempered with cumin seeds, garlic, and red chilies.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 190,
+    image: dalFry,
+    available: true
+  },
+  {
+    id: "m20",
+    name: "Sambar",
+    description: "A tangy and flavorful lentil stew loaded with mixed vegetables, tamarind, and fresh sambar powder.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 160,
+    image: sambar,
+    available: true
+  },
+  {
+    id: "m21",
+    name: "Rasam",
+    description: "A traditional fiery, tangy soup made with tamarind juice, black pepper, cumin, and fresh coriander.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 140,
+    image: rasam,
+    available: true
+  },
+  {
+    id: "m22",
+    name: "Bendakaya Fry",
+    description: "Crispy stir-fried okra (ladies' finger) tossed with peanuts, garlic, and traditional spices.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 200,
+    image: bendakayaFry,
+    available: true
+  },
+  {
+    id: "m23",
+    name: "Aloo Fry",
+    description: "Classic golden-fried potato cubes seasoned with chili powder, turmeric, and curry leaves.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 180,
+    image: alooFry,
+    available: true
+  },
+  {
+    id: "m24",
+    name: "Cabbage Curry",
+    description: "Healthy cabbage stir-fry cooked with split yellow lentils (chana dal) and fresh coconut.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 170,
+    image: cabbageCurry,
+    available: true
+  },
+  {
+    id: "m25",
+    name: "Beetroot Curry",
+    description: "Sweet beetroot stir-fry seasoned with mustard, curry leaves, and a generous topping of fresh coconut.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 180,
+    image: beetrootCurry,
+    available: true
+  },
+  {
+    id: "m26",
+    name: "Capsicum Curry",
+    description: "Crunchy capsicum (bell pepper) stir-fry seasoned with roasted peanut and sesame spice powder.",
+    category: "Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 210,
+    image: capsicumCurry,
+    available: true
+  },
+  {
+    id: "m27",
+    name: "Andhra Chicken Biryani",
+    description: "Spicier Andhra-style chicken biryani with darker masala, green chillies, curry leaves and aromatic rice.",
+    category: "Non Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 340,
+    image: andhraChickenBiryani,
+    available: true
+  },
+  {
+    id: "m28",
+    name: "Mutton Dum Biryani",
+    description: "Premium mutton biryani with tender meat pieces, aromatic basmati rice and royal presentation.",
+    category: "Non Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 480,
+    image: muttonDumBiryani,
+    available: true
+  },
+  {
+    id: "m29",
+    name: "Andhra Chicken Curry",
+    description: "Authentic Andhra chicken curry cooked with rustic village spices, thick gravy, and fresh curry leaves.",
+    category: "Non Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 300,
+    image: andhraChickenCurry,
+    available: true
+  },
+  {
+    id: "m30",
+    name: "Chicken Fry",
+    description: "Dry Andhra chicken fry tossed with green chillies, caramelized onions, and crunchy roasted curry leaves.",
+    category: "Non Veg",
+    tags: ["Snacks", "Lunch", "Dinner"],
+    price: 280,
+    image: chickenFry,
+    available: true
+  },
+  {
+    id: "m31",
+    name: "Royyala Iguru",
+    description: "Authentic Andhra prawn curry featuring large tender prawns cooked in a thick spicy onion-tomato gravy.",
+    category: "Non Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 390,
+    image: royyalaIguru,
+    available: true
+  },
+  {
+    id: "m32",
+    name: "Apollo Fish",
+    description: "Crispy fried boneless fish chunks tossed in a tangy, spicy yogurt sauce with curry leaves and green chillies.",
+    category: "Non Veg",
+    tags: ["Snacks", "Dinner"],
+    price: 360,
+    image: apolloFish,
+    available: true
+  },
+  {
+    id: "m33",
+    name: "Chicken 65",
+    description: "Vibrant and crispy fried chicken cubes seasoned with red chillies, curry leaves, and yogurt glaze.",
+    category: "Non Veg",
+    tags: ["Snacks", "Dinner"],
+    price: 270,
+    image: chicken65,
+    available: true
+  },
+  {
+    id: "m34",
+    name: "Chicken Roast",
+    description: "Succulent pan-roasted chicken pieces slow-cooked in a rich glaze of roasted spices.",
+    category: "Non Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 310,
+    image: chickenRoast,
+    available: true
+  },
+  {
+    id: "m35",
+    name: "Mutton Fry",
+    description: "Traditional dry Andhra mutton fry cooked with crushed black pepper, garlic, and fresh curry leaves.",
+    category: "Non Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 420,
+    image: muttonFry,
+    available: true
+  },
+  {
+    id: "m36",
+    name: "Keema Curry",
+    description: "Flavorful minced mutton slow-cooked with aromatic green peas, ginger, and rich spices.",
+    category: "Non Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 440,
+    image: keemaCurry,
+    available: true
+  },
+  {
+    id: "m37",
+    name: "Natukodi Pulusu",
+    description: "Authentic country chicken curry prepared in a fiery, rustic village-style broth.",
+    category: "Non Veg",
+    tags: ["Lunch", "Dinner"],
+    price: 360,
+    image: natukodiPulusu,
+    available: true
+  },
+  {
+    id: "m38",
+    name: "Idli",
+    description: "Soft, pillowy steamed rice cakes served with traditional coconut chutney, peanut chutney, and steaming hot sambar.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 120,
+    image: idliImage,
+    available: true
+  },
+  {
+    id: "m39",
+    name: "Ghee Idli",
+    description: "Mini idlis tossed in aromatic pure desi ghee and topped with flavorful gunpowder podi and fresh curry leaves.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 150,
+    image: gheeIdliImage,
+    available: true
+  },
+  {
+    id: "m40",
+    name: "Medu Vada (Garelu)",
+    description: "Crispy and golden-brown lentil donuts served with fresh coconut chutney, ginger chutney, and piping hot sambar.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 140,
+    image: meduVadaImage,
+    available: true
+  },
+  {
+    id: "m41",
+    name: "Poori",
+    description: "Hot, puffed wheat pooris served with flavorful potato masala curry in traditional South Indian style.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 130,
+    image: pooriImage,
+    available: true
+  },
+  {
+    id: "m42",
+    name: "Masala Dosa",
+    description: "Crispy golden rice crepe filled with spiced potato masala, served with coconut chutney, tomato chutney, and hot sambar.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 160,
+    image: masalaDosaImage,
+    available: true
+  },
+  {
+    id: "m43",
+    name: "Plain Dosa",
+    description: "Thin, crispy golden-brown plain dosa folded elegantly and served with traditional chutneys and sambar.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 140,
+    image: plainDosaImage,
+    available: true
+  },
+  {
+    id: "m44",
+    name: "Pesarattu",
+    description: "Authentic Andhra style green gram crepe garnished with chopped ginger and onions, served with traditional ginger chutney.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 160,
+    image: pesarattuImage,
+    available: true
+  },
+  {
+    id: "m45",
+    name: "Upma",
+    description: "Classic semolina upma cooked with vegetables and seasoned with toasted cashews, curry leaves, and pure ghee.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 120,
+    image: upmaImage,
+    available: true
+  },
+  {
+    id: "m46",
+    name: "Pongal",
+    description: "Traditional South Indian rice and lentil dish seasoned with black pepper, cumin, ginger, cashews, and generous ghee.",
+    category: "Veg",
+    tags: ["Breakfast"],
+    price: 130,
+    image: pongalImage,
+    available: true
+  },
+  {
+    id: "m47",
+    name: "Mirchi Bajji",
+    description: "Crispy fried banana peppers stuffed with tangy spice mix, dipped in chickpea batter and served golden brown.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 120,
+    image: mirchiBajji,
+    available: true
+  },
+  {
+    id: "m48",
+    name: "Punugulu",
+    description: "Deep-fried small round dumplings made from fermented rice and urad dal batter, crispy outside and soft inside.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 100,
+    image: punugulu,
+    available: true
+  },
+  {
+    id: "m49",
+    name: "Onion Pakoda",
+    description: "Crispy and crunchy sliced onion fritters mixed with chickpea flour, curry leaves, and green chilies.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 110,
+    image: onionPakoda,
+    available: true
+  },
+  {
+    id: "m50",
+    name: "Mixed Veg Pakoda",
+    description: "Crispy deep-fried vegetable fritters made with sliced potatoes, onions, spinach, and chickpea flour.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 120,
+    image: mixedVegPakoda,
+    available: true
+  },
+  {
+    id: "m51",
+    name: "Samosa",
+    description: "Golden crispy vegetable samosas served with mint chutney and tamarind chutney.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 90,
+    image: "https://images.unsplash.com/photo-1601050690597-df056fb4ce78?auto=format&fit=crop&q=80&w=600",
+    available: true
+  },
+  {
+    id: "m52",
+    name: "Veg Cutlet",
+    description: "Premium vegetable cutlets with crispy coating served with tomato ketchup and salad.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 130,
+    image: "https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&q=80&w=600",
+    available: true
+  },
+  {
+    id: "m53",
+    name: "Corn Cutlet",
+    description: "Golden sweet corn cutlets served with mint chutney and fresh vegetables.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 140,
+    image: "https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&q=80&w=600",
+    available: true
+  },
+  {
+    id: "m54",
+    name: "Spring Rolls",
+    description: "Crispy vegetable spring rolls served with spicy schezwan sauce.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 150,
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600",
+    available: true
+  },
+  {
+    id: "m55",
+    name: "Veg Puff",
+    description: "Fresh bakery-style vegetable puff with flaky layers served on a premium wooden platter.",
+    category: "Veg",
+    tags: ["Snacks"],
+    price: 110,
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600",
+    available: true
   }
 ];
 
@@ -135,7 +614,7 @@ export const INITIAL_TESTIMONIALS = [
     id: "t1",
     name: "Dr. Srinivas Rao",
     role: "Bride's Father (Wedding Event)",
-    review: "A Caterings did an absolute masterpiece of a job for my daughter's wedding! The Chicken Dum Biryani and live sweets counter were the highlights. Guests are still talking about the authentic Andhra flavors. Simply outstanding and highly recommended!",
+    review: "ARUN CATERERS did an absolute masterpiece of a job for my daughter's wedding! The Chicken Dum Biryani and live sweets counter were the highlights. Guests are still talking about the authentic Andhra flavors. Simply outstanding and highly recommended!",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150"
   },
@@ -162,25 +641,25 @@ export const GALLERY_ITEMS = [
     id: "g1",
     title: "Cinematic Chicken Dum Biryani",
     category: "food",
-    image: "/src/assets/biryani.png"
+    image: biryaniImage
   },
   {
     id: "g2",
     title: "Royal Andhra Meals Thali Setup",
     category: "food",
-    image: "/src/assets/meals.png"
+    image: mealsImage
   },
   {
     id: "g3",
     title: "Premium Sweets Buffet Display",
     category: "setup",
-    image: "/src/assets/sweets.png"
+    image: sweetsImage
   },
   {
     id: "g4",
     title: "Interactive Live Cooking Station",
     category: "setup",
-    image: "/src/assets/live_counter.png"
+    image: liveCounterImage
   },
   {
     id: "g5",
@@ -202,7 +681,7 @@ export const GALLERY_ITEMS = [
   },
   {
     id: "g8",
-    title: "Luxury Dining Table Arrangement",
+    title: "Premium Dining Table Arrangement",
     category: "decor",
     image: "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&q=80&w=800"
   },

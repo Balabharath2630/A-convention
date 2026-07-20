@@ -11,7 +11,7 @@ const Contact = () => {
 
   const onSubmit = (data) => {
     // Treat as custom inquiry - save to LocalStorage and open WhatsApp
-    const message = `Hello A Caterings,
+    const message = `Hello ARUN CATERERS,
 
 I have a general inquiry.
 
@@ -28,11 +28,11 @@ Please get back to me.`;
   };
 
   const handleCall = () => {
-    window.open('tel:+919876543210', '_self');
+    window.open('tel:+917075812345', '_self');
   };
 
   const handleWhatsApp = () => {
-    window.open(`https://wa.me/${OWNER_WHATSAPP}?text=Hello%20A%20Caterings%2C%20I%20would%20like%20to%20chat.`, '_blank');
+    window.open(`https://wa.me/${OWNER_WHATSAPP}?text=Hello%20ARUN%20CATERERS%2C%20I%20would%20like%20to%20chat.`, '_blank');
   };
 
   return (
@@ -49,7 +49,7 @@ Please get back to me.`;
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div className={styles.headerContent}>
             <span className={styles.goldSubtitle}>Connect With Us</span>
-            <h1 className="text-gold-gradient">Contact A Caterings</h1>
+            <h1 className="text-gold-gradient">Contact ARUN CATERERS</h1>
           </div>
         </div>
       </section>
@@ -70,7 +70,7 @@ Please get back to me.`;
                 <Phone size={24} color="#D4AF37" />
               </div>
               <h3>Call Owner</h3>
-              <p>+91 98765 43210</p>
+              <p>+91 70758 12345</p>
               <span>Click to call instantly</span>
             </motion.div>
 
@@ -84,7 +84,7 @@ Please get back to me.`;
                 <MessageSquare size={24} color="#25D366" />
               </div>
               <h3>WhatsApp Chat</h3>
-              <p>+91 98765 43210</p>
+              <p>+91 70758 12345</p>
               <span>Instant chat replies</span>
             </motion.div>
 
@@ -96,7 +96,7 @@ Please get back to me.`;
                 <Mail size={24} color="#D4AF37" />
               </div>
               <h3>Email Inquiry</h3>
-              <p>info@acaterings.com</p>
+              <p>info@aruncaterers.com</p>
               <span>Write us for partnerships</span>
             </motion.div>
 
@@ -205,13 +205,13 @@ Please get back to me.`;
                   <h3>Headquarters & Master Kitchen</h3>
                   <div className={styles.addressRow}>
                     <MapPin size={24} className={styles.mapIcon} />
-                    <p>Plot 24, Road No. 10, Jubilee Hills, Hyderabad, Telangana - 500033</p>
+                    <p>Arundalpet, Guntur, Andhra Pradesh - 522002</p>
                   </div>
                   <div className={styles.infoRow}>
                     <p><strong>Note:</strong> We accept in-person consultations by appointments only. To request a food tasting session, please book at least 3 days in advance.</p>
                   </div>
                   <button 
-                    onClick={() => window.open('https://maps.google.com/?q=Jubilee+Hills+Hyderabad', '_blank')} 
+                    onClick={() => window.open('https://maps.google.com/?q=ARUN+CATERERS+Arundalpet+Guntur', '_blank')} 
                     className="btn btn-gold btn-sm"
                   >
                     Open Google Maps

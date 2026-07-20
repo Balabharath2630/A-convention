@@ -108,7 +108,7 @@
 .ctaBanner {
   position: relative;
   padding: 8rem 0;
-  background-image: url('/src/assets/live_counter.png');
+  background-image: url('../../assets/hero/live-counter.jpeg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

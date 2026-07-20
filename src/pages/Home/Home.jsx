@@ -6,6 +6,7 @@ import { ArrowRight, Flame, Heart, Award, ShieldCheck } from 'lucide-react';
 import Hero from '../../components/Hero/Hero';
 import Counter from '../../components/Counter/Counter';
 import Testimonial from '../../components/Testimonial/Testimonial';
+import mealsImage from '../../assets/hero/meals.jpeg';
 import styles from './Home.module.css';
 
 const Home = () => {
@@ -51,7 +52,7 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <img src="/src/assets/meals.png" alt="Royal Andhra Meals Setup" className={styles.welcomeImg} />
+              <img src={mealsImage} alt="Royal Andhra Meals Setup" className={styles.welcomeImg} />
               <div className={styles.goldFrame} />
             </motion.div>
             
@@ -65,7 +66,7 @@ const Home = () => {
               <span className={styles.goldSubtitle}>Est. 2011</span>
               <h2 className="text-gold-gradient" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Elegance In Every Flavor</h2>
               <p style={{ marginBottom: '1.2rem' }}>
-                At A Caterings, we elevate events from ordinary to unforgettable. Deeply rooted in the authentic tastes of Telugu cuisine, we combine centuries-old culinary traditions with modern gourmet presentations.
+                At ARUN CATERERS, we elevate events from ordinary to unforgettable. Deeply rooted in the authentic tastes of Telugu cuisine, we combine centuries-old culinary traditions with modern gourmet presentations.
               </p>
               <p style={{ marginBottom: '2rem', opacity: 0.8 }}>
                 Whether it is a grand wedding banquet of 5,000 guests or an intimate housewarming dinner, our dedicated master chefs, pristine hygienic kitchen, and signature royal hospitality make every event a luxurious gourmet journey.
@@ -146,7 +147,7 @@ const Home = () => {
           >
             <h2 className={styles.ctaTitle}>Ready to Host a Royal Celebration?</h2>
             <p className={styles.ctaDesc}>
-              Let us curate a custom luxury menu tailored perfectly for your event. Book your consultation slots today.
+              Let us curate a custom premium menu tailored perfectly for your event. Book your consultation slots today.
             </p>
             <button onClick={() => navigate('/booking')} className="btn btn-gold btn-lg">
               Book Catering Now

@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Lock, LayoutDashboard, Utensils, CalendarDays, History, LogOut,
-  Plus, Edit2, Trash2, ToggleLeft, ToggleRight, Check, X, Info
+  Plus, Edit2, Trash2, ToggleLeft, ToggleRight, Check, X, Info, Image
 } from 'lucide-react';
-import { ADMIN_CREDENTIALS, INITIAL_MENU_ITEMS } from '../../config/constants';
+import logoWhite from '../../assets/logo/logo-white.png';
+import { OWNER_WHATSAPP, ADMIN_CREDENTIALS, INITIAL_MENU_ITEMS, GALLERY_ITEMS } from '../../config/constants';
 import styles from './Admin.module.css';
 
 const Admin = () => {
@@ -23,6 +24,13 @@ const Admin = () => {
   const [bookings, setBookings] = useState([]);
   const [waHistory, setWaHistory] = useState([]);
 
+  // Gallery Management State
+  const [galleryItems, setGalleryItems] = useState([]);
+  const [galleryModalOpen, setGalleryModalOpen] = useState(false);
+  const [galleryFormTitle, setGalleryFormTitle] = useState('');
+  const [galleryFormImage, setGalleryFormImage] = useState('');
+  const [galleryFormCategory, setGalleryFormCategory] = useState('food');
+
   // Form Modal States (Add/Edit Item)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
@@ -38,7 +46,7 @@ const Admin = () => {
 
   // Check login session on mount
   useEffect(() => {
-    const session = localStorage.getItem('acaterings_admin_session');
+    const session = localStorage.getItem('aruncaterers_admin_session');
     if (session === 'active') {
       setIsAuthenticated(true);
     }
@@ -49,21 +57,59 @@ const Admin = () => {
 
   const loadLocalStorageData = () => {
     // 1. Menu
-    const storedMenu = localStorage.getItem('acaterings_menu');
-    if (storedMenu) {
+    const storedMenu = localStorage.getItem('aruncaterers_menu');
+    if (storedMenu && JSON.parse(storedMenu).length === INITIAL_MENU_ITEMS.length) {
       setMenuItems(JSON.parse(storedMenu));
     } else {
-      localStorage.setItem('acaterings_menu', JSON.stringify(INITIAL_MENU_ITEMS));
+      localStorage.setItem('aruncaterers_menu', JSON.stringify(INITIAL_MENU_ITEMS));
       setMenuItems(INITIAL_MENU_ITEMS);
     }
 
     // 2. Bookings
-    const storedBookings = localStorage.getItem('acaterings_bookings');
+    const storedBookings = localStorage.getItem('aruncaterers_bookings');
     setBookings(storedBookings ? JSON.parse(storedBookings) : []);
 
     // 3. WhatsApp log
-    const storedWa = localStorage.getItem('acaterings_wa_history');
+    const storedWa = localStorage.getItem('aruncaterers_wa_history');
     setWaHistory(storedWa ? JSON.parse(storedWa) : []);
+
+    // 4. Gallery items
+    const storedGallery = localStorage.getItem('aruncaterers_gallery');
+    if (storedGallery) {
+      setGalleryItems(JSON.parse(storedGallery));
+    } else {
+      localStorage.setItem('aruncaterers_gallery', JSON.stringify(GALLERY_ITEMS));
+      setGalleryItems(GALLERY_ITEMS);
+    }
+  };
+
+  const handleDeleteGalleryItem = (id) => {
+    if (window.confirm('Are you sure you want to delete this gallery item?')) {
+      const updated = galleryItems.filter(item => item.id !== id);
+      setGalleryItems(updated);
+      localStorage.setItem('aruncaterers_gallery', JSON.stringify(updated));
+    }
+  };
+
+  const handleAddGalleryItem = (e) => {
+    e.preventDefault();
+    if (!galleryFormTitle || !galleryFormImage) {
+      alert('Please fill out all required fields (Title, Image URL).');
+      return;
+    }
+    const newItem = {
+      id: 'g_' + Date.now(),
+      title: galleryFormTitle,
+      category: galleryFormCategory,
+      image: galleryFormImage
+    };
+    const updated = [...galleryItems, newItem];
+    setGalleryItems(updated);
+    localStorage.setItem('aruncaterers_gallery', JSON.stringify(updated));
+    setGalleryFormTitle('');
+    setGalleryFormImage('');
+    setGalleryFormCategory('food');
+    setGalleryModalOpen(false);
   };
 
   // Auth Submit
@@ -72,7 +118,7 @@ const Admin = () => {
     if (usernameInput === ADMIN_CREDENTIALS.username && passwordInput === ADMIN_CREDENTIALS.password) {
       setIsAuthenticated(true);
       setLoginError('');
-      localStorage.setItem('acaterings_admin_session', 'active');
+      localStorage.setItem('aruncaterers_admin_session', 'active');
     } else {
       setLoginError('Invalid Username or Password. Please try again.');
     }
@@ -81,7 +127,7 @@ const Admin = () => {
   // Logout
   const handleLogout = () => {
     setIsAuthenticated(false);
-    localStorage.removeItem('acaterings_admin_session');
+    localStorage.removeItem('aruncaterers_admin_session');
     setUsernameInput('');
     setPasswordInput('');
   };
@@ -95,7 +141,7 @@ const Admin = () => {
       return item;
     });
     setMenuItems(updated);
-    localStorage.setItem('acaterings_menu', JSON.stringify(updated));
+    localStorage.setItem('aruncaterers_menu', JSON.stringify(updated));
   };
 
   // Delete Menu Item
@@ -103,7 +149,7 @@ const Admin = () => {
     if (window.confirm('Are you sure you want to delete this menu item?')) {
       const updated = menuItems.filter(item => item.id !== id);
       setMenuItems(updated);
-      localStorage.setItem('acaterings_menu', JSON.stringify(updated));
+      localStorage.setItem('aruncaterers_menu', JSON.stringify(updated));
     }
   };
 
@@ -179,7 +225,7 @@ const Admin = () => {
     }
 
     setMenuItems(updatedMenu);
-    localStorage.setItem('acaterings_menu', JSON.stringify(updatedMenu));
+    localStorage.setItem('aruncaterers_menu', JSON.stringify(updatedMenu));
     setIsModalOpen(false);
   };
 
@@ -188,7 +234,7 @@ const Admin = () => {
     if (window.confirm('Remove this booking log?')) {
       const updated = bookings.filter(b => b.id !== id);
       setBookings(updated);
-      localStorage.setItem('acaterings_bookings', JSON.stringify(updated));
+      localStorage.setItem('aruncaterers_bookings', JSON.stringify(updated));
     }
   };
 
@@ -196,7 +242,7 @@ const Admin = () => {
   const handleClearWaHistory = () => {
     if (window.confirm('Delete all WhatsApp Request history logs?')) {
       setWaHistory([]);
-      localStorage.removeItem('acaterings_wa_history');
+      localStorage.removeItem('aruncaterers_wa_history');
     }
   };
 
@@ -232,7 +278,7 @@ const Admin = () => {
           >
             <div className={styles.authHeader}>
               <Lock size={32} className={styles.lockIcon} />
-              <h2>A Caterings Admin</h2>
+              <h2>ARUN CATERERS Admin</h2>
               <p>Enter credentials to access the management dashboard.</p>
             </div>
             
@@ -274,10 +320,10 @@ const Admin = () => {
           {/* Sidebar */}
           <aside className={styles.sidebar}>
             <div className={styles.sidebarHeader}>
-              <img src="/src/assets/logo.png" alt="A Caterings" className={styles.sidebarLogo} />
+              <img src={logoWhite} alt="ARUN CATERERS Logo" className={styles.sidebarLogo} />
               <div className={styles.sidebarText}>
-                <h3>A Caterings</h3>
-                <span>Control Center</span>
+                <h3>ARUN CATERERS</h3>
+                <span>Admin Control Panel</span>
               </div>
             </div>
 
@@ -307,11 +353,27 @@ const Admin = () => {
               </button>
 
               <button 
+                className={`${styles.navBtn} ${activeTab === 'gallery' ? styles.activeNavBtn : ''}`}
+                onClick={() => setActiveTab('gallery')}
+              >
+                <Image size={18} />
+                <span>Gallery Management</span>
+              </button>
+
+              <button 
                 className={`${styles.navBtn} ${activeTab === 'wa_logs' ? styles.activeNavBtn : ''}`}
                 onClick={() => setActiveTab('wa_logs')}
               >
                 <History size={18} />
                 <span>WhatsApp Log ({whatsappLogsCount})</span>
+              </button>
+
+              <button 
+                className={`${styles.navBtn} ${activeTab === 'info' ? styles.activeNavBtn : ''}`}
+                onClick={() => setActiveTab('info')}
+              >
+                <Info size={18} />
+                <span>Website Information</span>
               </button>
             </nav>
 
@@ -346,8 +408,8 @@ const Admin = () => {
                   </div>
                   <div className={`${styles.statCard} glass-card`}>
                     <h3>WhatsApp Requests</h3>
-                    <span className={styles.statNumber}>{whatsappLogsCount}</span>
-                    <p>Total clicks tracked</p>
+                    <span className={styles.statNumber}>0</span>
+                    <p>0 Requests (backend tracking pending)</p>
                   </div>
                   <div className={`${styles.statCard} glass-card`}>
                     <h3>Live Stations</h3>
@@ -356,103 +418,7 @@ const Admin = () => {
                   </div>
                 </div>
 
-                {/* SVG Visualizations / Charts */}
-                <div className={styles.chartsGrid}>
-                  
-                  {/* Chart 1: Guest Ranges Distribution SVG */}
-                  <div className={`${styles.chartCard} glass-card`}>
-                    <h4>Reservations Breakdown (Guest Counts)</h4>
-                    <div className={styles.chartWrapper}>
-                      {bookings.length === 0 ? (
-                        <div className={styles.noChartData}>
-                          <Info size={30} />
-                          <p>Reserve events to populate chart visualizers</p>
-                        </div>
-                      ) : (
-                        <svg viewBox="0 0 400 200" className={styles.svgChart}>
-                          {/* Grid Lines */}
-                          <line x1="40" y1="20" x2="380" y2="20" stroke="rgba(255,248,240,0.1)" />
-                          <line x1="40" y1="70" x2="380" y2="70" stroke="rgba(255,248,240,0.1)" />
-                          <line x1="40" y1="120" x2="380" y2="120" stroke="rgba(255,248,240,0.1)" />
-                          <line x1="40" y1="170" x2="380" y2="170" stroke="rgba(255,248,240,0.3)" />
-
-                          {/* Render columns representing guest sizes */}
-                          {bookings.slice(-5).map((b, index) => {
-                            const x = 70 + index * 60;
-                            const maxVal = Math.max(...bookings.map(book => book.guests), 500);
-                            const height = (b.guests / maxVal) * 130;
-                            const y = 170 - height;
-                            
-                            return (
-                              <g key={b.id}>
-                                <motion.rect
-                                  x={x}
-                                  y={y}
-                                  width="30"
-                                  height={height}
-                                  fill="url(#goldGradient)"
-                                  initial={{ height: 0, y: 170 }}
-                                  animate={{ height, y }}
-                                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                                />
-                                <text x={x + 15} y={y - 8} textAnchor="middle" fill="#FFF8F0" fontSize="10">{b.guests}</text>
-                                <text x={x + 15} y="185" textAnchor="middle" fill="rgba(255,248,240,0.5)" fontSize="9">
-                                  {b.name.split(' ')[0]}
-                                </text>
-                              </g>
-                            );
-                          })}
-
-                          {/* Gradients definition inside SVG */}
-                          <defs>
-                            <linearGradient id="goldGradient" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#FFF89C" />
-                              <stop offset="100%" stopColor="#D4AF37" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Chart 2: Event Type Counts SVG Donut Chart */}
-                  <div className={`${styles.chartCard} glass-card`}>
-                    <h4>Bookings by Celebration Type</h4>
-                    <div className={styles.chartWrapper}>
-                      {bookings.length === 0 ? (
-                        <div className={styles.noChartData}>
-                          <Info size={30} />
-                          <p>Reserve events to populate chart visualizers</p>
-                        </div>
-                      ) : (
-                        <div className={styles.donutLayout}>
-                          <svg viewBox="0 0 200 200" className={styles.svgDonut}>
-                            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,248,240,0.05)" strokeWidth="15" />
-                            {/* Simple colored segment arcs representation */}
-                            <circle cx="100" cy="100" r="70" fill="none" stroke="#7A1414" strokeWidth="15" strokeDasharray="300 440" strokeDashoffset="0" />
-                            <circle cx="100" cy="100" r="70" fill="none" stroke="#D4AF37" strokeWidth="15" strokeDasharray="100 440" strokeDashoffset="-300" />
-                            <circle cx="100" cy="100" r="70" fill="none" stroke="#FFF8F0" strokeWidth="15" strokeDasharray="40 440" strokeDashoffset="-400" />
-                          </svg>
-                          <div className={styles.donutLegend}>
-                            <div className={styles.legendItem}>
-                              <span style={{ backgroundColor: '#7A1414' }} />
-                              <span>Wedding / Receptions</span>
-                            </div>
-                            <div className={styles.legendItem}>
-                              <span style={{ backgroundColor: '#D4AF37' }} />
-                              <span>House Warming</span>
-                            </div>
-                            <div className={styles.legendItem}>
-                              <span style={{ backgroundColor: '#FFF8F0' }} />
-                              <span>Others</span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                </div>
+                {/* SVG Visualizations / Charts are hidden for frontend-only phase */}
               </motion.div>
             )}
 
@@ -544,7 +510,7 @@ const Admin = () => {
                   {bookings.length === 0 ? (
                     <div className={styles.emptyTableState}>
                       <CalendarDays size={48} className={styles.emptyTableIcon} />
-                      <h3>No Booking Requests Recorded</h3>
+                      <h3>No booking requests received yet.</h3>
                       <p>Guest catering forms submitted on the booking page will list here.</p>
                     </div>
                   ) : (
@@ -650,6 +616,125 @@ const Admin = () => {
               </motion.div>
             )}
 
+            {/* Tab: Gallery Management */}
+            {activeTab === 'gallery' && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={styles.tabContent}>
+                <div className={styles.contentHeaderRow}>
+                  <div className={styles.contentHeader}>
+                    <h1>Gallery Management</h1>
+                    <p>Add or remove portfolio and setup images displayed on the client website.</p>
+                  </div>
+                  <button onClick={() => setGalleryModalOpen(true)} className="btn btn-gold btn-sm" style={{ gap: '0.4rem' }}>
+                    <Plus size={16} />
+                    Add Gallery Image
+                  </button>
+                </div>
+
+                <div className={`${styles.tableWrapper} glass-card`}>
+                  {galleryItems.length === 0 ? (
+                    <div className={styles.emptyTableState}>
+                      <Image size={48} className={styles.emptyTableIcon} />
+                      <h3>No Gallery Images Found</h3>
+                      <p>Add new portfolio images to showcase your catering events.</p>
+                    </div>
+                  ) : (
+                    <table className={styles.table}>
+                      <thead>
+                        <tr>
+                          <th>Image Preview</th>
+                          <th>Title</th>
+                          <th>Category</th>
+                          <th style={{ textAlign: 'center' }}>Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {galleryItems.map((item) => (
+                          <tr key={item.id}>
+                            <td>
+                              <img src={item.image} alt={item.title} className={styles.tableThumb} style={{ width: '80px', height: '50px', objectFit: 'cover' }} />
+                            </td>
+                            <td><strong>{item.title}</strong></td>
+                            <td>
+                              <span className={`${styles.badge} ${styles.badgeVeg}`}>
+                                {item.category}
+                              </span>
+                            </td>
+                            <td>
+                              <div className={styles.actionsCell}>
+                                <button onClick={() => handleDeleteGalleryItem(item.id)} className={styles.deleteBtn} aria-label="Delete gallery item">
+                                  <Trash2 size={16} />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                </div>
+              </motion.div>
+            )}
+
+            {/* Tab: Website Information */}
+            {activeTab === 'info' && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={styles.tabContent}>
+                <div className={styles.contentHeader}>
+                  <h1>Website Information</h1>
+                  <p>Configuration details and active business metadata for ARUN CATERERS.</p>
+                </div>
+
+                <div className={styles.infoGrid}>
+                  <div className={`${styles.infoCard} glass-card`}>
+                    <h3>Business Details</h3>
+                    <div className={styles.infoDetailsList}>
+                      <div className={styles.infoDetailItem}>
+                        <span>Business Name:</span>
+                        <strong>ARUN CATERERS</strong>
+                      </div>
+                      <div className={styles.infoDetailItem}>
+                        <span>Established Year:</span>
+                        <strong>2011</strong>
+                      </div>
+                      <div className={styles.infoDetailItem}>
+                        <span>Location:</span>
+                        <strong>Guntur, Andhra Pradesh</strong>
+                      </div>
+                      <div className={styles.infoDetailItem}>
+                        <span>WhatsApp Number:</span>
+                        <strong>+91 70758 12345</strong>
+                      </div>
+                      <div className={styles.infoDetailItem}>
+                        <span>Contact Email:</span>
+                        <strong>info@aruncaterers.com</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={`${styles.infoCard} glass-card`}>
+                    <h3>System & Status</h3>
+                    <div className={styles.infoDetailsList}>
+                      <div className={styles.infoDetailItem}>
+                        <span>Website Status:</span>
+                        <span className={styles.statusBadgeActive}>Active</span>
+                      </div>
+                      <div className={styles.infoDetailItem}>
+                        <span>Current Phase:</span>
+                        <strong>Frontend-Only (Backend-Ready)</strong>
+                      </div>
+                      <div className={styles.infoDetailItem}>
+                        <span>Data Storage:</span>
+                        <strong>LocalStorage Sync</strong>
+                      </div>
+                      <div className={styles.infoDetailItem}>
+                        <span>Serving Regions:</span>
+                        <strong>Guntur, Vijayawada & Surroundings</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
           </main>
         </div>
       )}
@@ -723,10 +808,10 @@ const Admin = () => {
                     type="text" 
                     value={formImage} 
                     onChange={(e) => setFormImage(e.target.value)} 
-                    placeholder="e.g. https://images.unsplash.com/... or /src/assets/..." 
+                    placeholder="e.g. https://images.unsplash.com/... or /src/assets/hero/biryani.jpeg" 
                     required 
                   />
-                  <small className={styles.hint}>You can copy-paste any Unsplash image URL or local paths like /src/assets/biryani.png</small>
+                  <small className={styles.hint}>You can copy-paste any Unsplash image URL or local paths like /src/assets/hero/biryani.jpeg</small>
                 </div>
 
                 <div className={styles.formGroup}>
@@ -755,6 +840,70 @@ const Admin = () => {
                   </button>
                   <button type="submit" className="btn btn-gold btn-sm">
                     Save Dish Item
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal Dialog: Add Gallery Item */}
+      <AnimatePresence>
+        {galleryModalOpen && (
+          <div className={styles.modalOverlay} onClick={() => setGalleryModalOpen(false)}>
+            <motion.div 
+              className={`${styles.modalCard} glass-card`}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className={styles.modalHeader}>
+                <h2>Add New Gallery Image</h2>
+                <button onClick={() => setGalleryModalOpen(false)} className={styles.modalCloseBtn}>
+                  <X size={20} />
+                </button>
+              </div>
+
+              <form onSubmit={handleAddGalleryItem} className={styles.modalForm}>
+                <div className={styles.formGroup}>
+                  <label>Image Title *</label>
+                  <input 
+                    type="text" 
+                    value={galleryFormTitle} 
+                    onChange={(e) => setGalleryFormTitle(e.target.value)} 
+                    placeholder="e.g. Traditional Andhra Feast Setup" 
+                    required 
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Category *</label>
+                  <select value={galleryFormCategory} onChange={(e) => setGalleryFormCategory(e.target.value)}>
+                    <option value="food">Food</option>
+                    <option value="setup">Setup</option>
+                    <option value="decor">Decor</option>
+                  </select>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label>Image URL *</label>
+                  <input 
+                    type="text" 
+                    value={galleryFormImage} 
+                    onChange={(e) => setGalleryFormImage(e.target.value)} 
+                    placeholder="e.g. https://images.unsplash.com/... or /src/assets/hero/biryani.jpeg" 
+                    required 
+                  />
+                </div>
+
+                <div className={styles.modalActions}>
+                  <button type="button" onClick={() => setGalleryModalOpen(false)} className="btn btn-outline btn-sm">
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn btn-gold btn-sm">
+                    Add Image
                   </button>
                 </div>
               </form>

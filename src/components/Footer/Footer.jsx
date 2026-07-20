@@ -3,17 +3,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, MessageSquare, Compass } from 'lucide-react';
 import { OWNER_WHATSAPP } from '../../config/constants';
+import logoWhite from '../../assets/logo/logo-white.png';
 import styles from './Footer.module.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const handleWhatsApp = () => {
-    window.open(`https://wa.me/${OWNER_WHATSAPP}?text=Hello%20A%20Caterings%2C%20I%20would%20like%20to%20chat%20about%20your%20services.`, '_blank');
+    window.open(`https://wa.me/${OWNER_WHATSAPP}?text=Hello%20ARUN%20CATERERS%2C%20I%20would%20like%20to%20chat%20about%20your%20services.`, '_blank');
   };
 
   const handleGoogleMaps = () => {
-    window.open('https://maps.google.com/?q=Premium+Catering+Services+Hyderabad', '_blank');
+    window.open('https://maps.google.com/?q=ARUN+CATERERS+Guntur', '_blank');
   };
 
   return (
@@ -23,14 +24,14 @@ const Footer = () => {
         {/* Brand Column */}
         <div className={styles.columnBrand}>
           <div className={styles.logoRow}>
-            <img src="/src/assets/logo.png" alt="A Caterings Logo" className={styles.logo} />
+            <img src={logoWhite} alt="ARUN CATERERS Logo" className={styles.logo} />
             <div className={styles.logoText}>
-              <span className={styles.brandName}>A CATERINGS</span>
+              <span className={styles.brandName}>ARUN CATERERS</span>
               <span className={styles.brandSubtitle}>ROYAL TELUGU TASTE</span>
             </div>
           </div>
           <p className={styles.brandDesc}>
-            Bringing the authentic culinary heritage of Telugu states to your celebrations. Crafting memorable culinary experiences with premium service, pristine hygiene, and royal tastes since 2011.
+            ARUN CATERERS specializes in authentic Telugu catering for weddings, receptions, birthdays, corporate events, housewarming ceremonies, and all special occasions. We serve delicious traditional cuisine with exceptional service across Guntur and surrounding areas.
           </p>
           <div className={styles.socials}>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
@@ -62,15 +63,15 @@ const Footer = () => {
           <ul className={styles.contactList}>
             <li>
               <MapPin size={22} className={styles.contactIcon} />
-              <span>Plot 24, Jubilee Hills Road No. 10, Hyderabad, Telangana, India</span>
+              <span>Arundalpet, Guntur, Andhra Pradesh, India</span>
             </li>
             <li>
               <Phone size={18} className={styles.contactIcon} />
-              <a href="tel:+919876543210">+91 98765 43210</a>
+              <a href="tel:+917075812345">+91 70758 12345</a>
             </li>
             <li>
               <Mail size={18} className={styles.contactIcon} />
-              <a href="mailto:info@acaterings.com">info@acaterings.com</a>
+              <a href="mailto:info@aruncaterers.com">info@aruncaterers.com</a>
             </li>
           </ul>
           
@@ -93,7 +94,7 @@ const Footer = () => {
       <div className={styles.bottomBar}>
         <div className={styles.bottomContainer}>
           <p className={styles.copyright}>
-            &copy; {currentYear} A Caterings. All Rights Reserved. Crafted with royal elegance.
+            &copy; {currentYear} ARUN CATERERS. All Rights Reserved. Crafted with royal elegance.
           </p>
           <div className={styles.bottomLinks}>
             <a href="#">Privacy Policy</a>

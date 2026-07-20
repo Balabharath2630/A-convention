@@ -6,6 +6,7 @@ import {
   Clock, Flame, HeartHandshake, Gift, Briefcase, Home, Landmark 
 } from 'lucide-react';
 import styles from './About.module.css';
+import liveCounterImage from '../../assets/hero/live-counter.jpeg';
 
 const WHY_CHOOSE_US = [
   {
@@ -21,7 +22,7 @@ const WHY_CHOOSE_US = [
   {
     icon: Gift,
     title: 'Affordable Packages',
-    desc: 'Curated luxury catering packages tailored to suit different event scales and budgets.'
+    desc: 'Curated premium catering packages tailored to suit different event scales and budgets.'
   },
   {
     icon: Compass,
@@ -118,7 +119,7 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <img src="/src/assets/live_counter.png" alt="A Caterings Kitchen Setup" className={styles.aboutImg} />
+              <img src={liveCounterImage} alt="ARUN CATERERS Kitchen Setup" className={styles.aboutImg} />
               <div className={styles.frameDecoration} />
             </motion.div>
 
@@ -132,7 +133,7 @@ const About = () => {
               <span className={styles.goldSubtitle}>Who We Are</span>
               <h2 className="text-gold-gradient" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Crafting Royal Gastronomical Journeys</h2>
               <p style={{ marginBottom: '1.2rem' }}>
-                A Caterings is a premier luxury catering company founded in Hyderabad with a simple vision: to serve authentic, top-tier Telugu dishes with the elegance of modern royal dining. Over the last 15 years, we have grown from a small family recipe kitchen into a trusted catering partner for thousands of families and corporates across the state.
+                ARUN CATERERS is a premier Telugu wedding and event catering company founded in Guntur with a simple vision: to serve authentic, top-tier Telugu dishes with the elegance of modern royal dining. Over the last 15 years, we have grown from a small family recipe kitchen into a trusted catering partner for thousands of families and corporates across the state.
               </p>
               <p style={{ marginBottom: '2.2rem', opacity: 0.85 }}>
                 Our operations are driven by a commitment to absolute purity, pristine presentation, and a relentless focus on customer satisfaction. Every ingredient is scrutinized, every dish is prepared with passion, and every setup is organized to wow your guests at first glance.
@@ -142,11 +143,11 @@ const About = () => {
               <div className={styles.mvRow}>
                 <div className={styles.mvCard}>
                   <h3 className={styles.mvTitle}>Our Mission</h3>
-                  <p className={styles.mvText}>To preserve traditional culinary arts, sourcing pure ingredients to deliver a luxurious, hygienic dining experience for every event.</p>
+                  <p className={styles.mvText}>To preserve traditional culinary arts, sourcing pure ingredients to deliver a premium, hygienic dining experience for every event.</p>
                 </div>
                 <div className={styles.mvCard}>
                   <h3 className={styles.mvTitle}>Our Vision</h3>
-                  <p className={styles.mvText}>To set the benchmark for luxury Indian catering globally, blending authentic heritage tastes with premium service standards.</p>
+                  <p className={styles.mvText}>To set the benchmark for authentic Indian catering globally, blending authentic heritage tastes with premium service standards.</p>
                 </div>
               </div>
             </motion.div>
@@ -182,7 +183,7 @@ const About = () => {
         <div className="container">
           <div className="section-header">
             <span className={styles.goldSubtitle}>Why Choose Us</span>
-            <h2 className="text-gold-gradient">The A Caterings Distinction</h2>
+            <h2 className="text-gold-gradient">The ARUN CATERERS Distinction</h2>
             <p>What sets us apart in creating premium culinary experiences.</p>
           </div>
 

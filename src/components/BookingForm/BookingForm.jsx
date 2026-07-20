@@ -2,23 +2,22 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { Calendar, Users, MapPin, MessageSquare, ClipboardList, User, Phone, Mail } from 'lucide-react';
+import { Calendar, Users, MapPin, MessageSquare, ClipboardList, User, Phone, Mail, Clock } from 'lucide-react';
 import { OWNER_WHATSAPP } from '../../config/constants';
 import styles from './BookingForm.module.css';
 
 const EVENT_TYPES = [
-  'Wedding Reception',
-  'Engagement Ceremony',
-  'House Warming (Gruhapravesam)',
-  'Birthday Celebration',
-  'Corporate Event / Gathering',
-  'Temple Festival / Pooja',
-  'Thread Ceremony (Upanayanam)',
-  'Half Saree Ceremony',
-  'Other Celebration'
+  'Wedding',
+  'Reception',
+  'Birthday',
+  'Housewarming',
+  'Corporate Event',
+  'Temple Function',
+  'Engagement',
+  'Other'
 ];
 
-const BookingForm = () => {
+const BookingForm = ({ selectedItems = [], onClearMenu }) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: {
       guests: 100
@@ -26,8 +25,13 @@ const BookingForm = () => {
   });
 
   const onSubmit = (data) => {
+    if (selectedItems.length === 0) {
+      alert("Please select at least one dish from the menu to request a proposal.");
+      return;
+    }
+
     // 1. Save Booking to LocalStorage (for Admin page accessibility)
-    const storedBookings = localStorage.getItem('acaterings_bookings');
+    const storedBookings = localStorage.getItem('aruncaterers_bookings');
     const bookings = storedBookings ? JSON.parse(storedBookings) : [];
     
     const newBooking = {
@@ -39,15 +43,17 @@ const BookingForm = () => {
       type: data.type,
       guests: parseInt(data.guests),
       address: data.address,
+      servingTime: data.servingTime,
       requirements: data.requirements || 'None',
+      menuItems: selectedItems.map(item => item.name),
       createdAt: new Date().toISOString()
     };
 
     bookings.push(newBooking);
-    localStorage.setItem('acaterings_bookings', JSON.stringify(bookings));
+    localStorage.setItem('aruncaterers_bookings', JSON.stringify(bookings));
 
     // 2. Save WhatsApp history request to LocalStorage
-    const storedHistory = localStorage.getItem('acaterings_wa_history');
+    const storedHistory = localStorage.getItem('aruncaterers_wa_history');
     const history = storedHistory ? JSON.parse(storedHistory) : [];
     history.push({
       id: 'w_' + Date.now(),
@@ -58,23 +64,35 @@ const BookingForm = () => {
       guests: data.guests,
       sentAt: new Date().toISOString()
     });
-    localStorage.setItem('acaterings_wa_history', JSON.stringify(history));
+    localStorage.setItem('aruncaterers_wa_history', JSON.stringify(history));
 
     // 3. Generate Structured WhatsApp message
-    const message = `Hello A Caterings,
+    const menuList = selectedItems.map((item, idx) => `${idx + 1}. ${item.name} (${item.category})`).join('\n');
+    const message = `Hello ARUN CATERERS,
 
-I would like to book catering.
+I would like to request a custom catering quotation proposal for my event.
 
-Name: ${data.name}
-Phone: ${data.phone}
-Email: ${data.email}
-Event Date: ${data.date}
-Guests: ${data.guests}
-Address: ${data.address}
-Event Type: ${data.type}
-Additional Requirements: ${data.requirements || 'None'}
+*Customer Details:*
+- Name: ${data.name}
+- Phone: ${data.phone}
+- Email: ${data.email}
 
-Please contact me.`;
+*Event Details:*
+- Event Type: ${data.type}
+- Event Date: ${data.date}
+- Preferred Serving Time: ${data.servingTime}
+- Number of Guests: ${data.guests}
+- Venue Address: ${data.address}
+
+*Selected Menu Dishes (${selectedItems.length} items):*
+${menuList}
+
+*Additional Requirements:*
+${data.requirements || 'None'}
+
+Please share the pricing quote and customized menu options.
+
+Thank You.`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${OWNER_WHATSAPP}?text=${encodedMessage}`;
@@ -82,8 +100,11 @@ Please contact me.`;
     // 4. Open WhatsApp tab
     window.open(whatsappUrl, '_blank');
 
-    // 5. Reset Form
+    // 5. Reset Form & Clear Menu
     reset();
+    if (onClearMenu) {
+      onClearMenu();
+    }
   };
 
   return (
@@ -96,7 +117,7 @@ Please contact me.`;
       <div className={styles.formHeader}>
         <ClipboardList className={styles.headerIcon} size={28} />
         <h2>Request a Catering Proposal</h2>
-        <p>Fill out details below and complete redirecting to WhatsApp. Our catering executives will contact you within 2 hours.</p>
+        <p>Fill out details below and complete redirecting to WhatsApp. Our catering executives will contact you within 2 hours to share customized menu plans.</p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -126,7 +147,7 @@ Please contact me.`;
             <input
               id="phone"
               type="tel"
-              placeholder="e.g. 9876543210"
+              placeholder="e.g. 7075812345"
               className={errors.phone ? styles.inputError : ''}
               {...register('phone', { 
                 required: 'Phone number is required',
@@ -140,29 +161,30 @@ Please contact me.`;
           </div>
         </div>
 
-        {/* Row 2: Email & Event Date */}
-        <div className={styles.row}>
-          <div className={styles.formGroup}>
-            <label htmlFor="email">
-              <Mail size={16} className={styles.inputIcon} />
-              Email Address
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="e.g. anand@example.com"
-              className={errors.email ? styles.inputError : ''}
-              {...register('email', { 
-                required: 'Email address is required',
-                pattern: {
-                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                  message: 'Please enter a valid email address'
-                }
-              })}
-            />
-            {errors.email && <span className={styles.errorText}>{errors.email.message}</span>}
-          </div>
+        {/* Row 2: Email */}
+        <div className={styles.formGroup}>
+          <label htmlFor="email">
+            <Mail size={16} className={styles.inputIcon} />
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="e.g. anand@example.com"
+            className={errors.email ? styles.inputError : ''}
+            {...register('email', { 
+              required: 'Email address is required',
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: 'Please enter a valid email address'
+              }
+            })}
+          />
+          {errors.email && <span className={styles.errorText}>{errors.email.message}</span>}
+        </div>
 
+        {/* Row 3: Event Date & Preferred Serving Time */}
+        <div className={styles.row}>
           <div className={styles.formGroup}>
             <label htmlFor="date">
               <Calendar size={16} className={styles.inputIcon} />
@@ -177,9 +199,24 @@ Please contact me.`;
             />
             {errors.date && <span className={styles.errorText}>{errors.date.message}</span>}
           </div>
+
+          <div className={styles.formGroup}>
+            <label htmlFor="servingTime">
+              <Clock size={16} className={styles.inputIcon} />
+              Preferred Serving Time
+            </label>
+            <input
+              id="servingTime"
+              type="text"
+              placeholder="e.g. 12:30 PM, 7:00 PM"
+              className={errors.servingTime ? styles.inputError : ''}
+              {...register('servingTime', { required: 'Preferred serving time is required' })}
+            />
+            {errors.servingTime && <span className={styles.errorText}>{errors.servingTime.message}</span>}
+          </div>
         </div>
 
-        {/* Row 3: Event Type & Guests Count */}
+        {/* Row 4: Event Type & Guests Count */}
         <div className={styles.row}>
           <div className={styles.formGroup}>
             <label htmlFor="type">
@@ -189,7 +226,7 @@ Please contact me.`;
             <select
               id="type"
               className={errors.type ? styles.inputError : ''}
-              {...register('type', { required: 'Please select your celebration type' })}
+              {...register('type', { required: 'Please select your event type' })}
             >
               <option value="">-- Choose Event Type --</option>
               {EVENT_TYPES.map((type) => (
@@ -207,7 +244,7 @@ Please contact me.`;
             <input
               id="guests"
               type="number"
-              placeholder="Min 50 guests"
+              placeholder="Min 30 guests"
               className={errors.guests ? styles.inputError : ''}
               {...register('guests', { 
                 required: 'Approximate guest count is required',
@@ -223,14 +260,14 @@ Please contact me.`;
         <div className={styles.formGroup}>
           <label htmlFor="address">
             <MapPin size={16} className={styles.inputIcon} />
-            Venue / Delivery Address
+            Venue Address
           </label>
           <textarea
             id="address"
             rows="3"
             placeholder="Please enter the detailed venue or home address..."
             className={errors.address ? styles.inputError : ''}
-            {...register('address', { required: 'Event location or address is required' })}
+            {...register('address', { required: 'Event location/venue address is required' })}
           />
           {errors.address && <span className={styles.errorText}>{errors.address.message}</span>}
         </div>
@@ -249,6 +286,28 @@ Please contact me.`;
           />
         </div>
 
+        {/* Auto-filled Selected Menu Section */}
+        <div className={styles.menuSummaryGroup}>
+          <label className={styles.menuSummaryLabel}>
+            <ClipboardList size={16} className={styles.inputIcon} />
+            Selected Menu ({selectedItems.length} dishes auto-filled)
+          </label>
+          {selectedItems.length > 0 ? (
+            <div className={styles.menuSummaryBox}>
+              {selectedItems.map((item) => (
+                <div key={item.id} className={styles.menuSummaryItem}>
+                  <span className={`${styles.dot} ${item.category === 'Non Veg' ? styles.dotNonVeg : styles.dotVeg}`} />
+                  {item.name}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.noMenuWarning}>
+              No dishes selected. Please browse the menu and add items to your catering selection first.
+            </div>
+          )}
+        </div>
+
         {/* Submit Button */}
         <motion.button
           type="submit"
@@ -256,8 +315,9 @@ Please contact me.`;
           style={{ width: '100%', marginTop: '1rem', padding: '1rem' }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
+          disabled={selectedItems.length === 0}
         >
-          Book Catering Proposal
+          Submit Booking Proposal Request
         </motion.button>
       </form>
     </motion.div>

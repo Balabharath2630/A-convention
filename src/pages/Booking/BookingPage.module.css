@@ -11,7 +11,7 @@
   position: relative;
   height: 45vh;
   min-height: 300px;
-  background-image: url('/src/assets/live_counter.png');
+  background-image: url('../../assets/hero/live-counter.jpeg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -55,6 +55,183 @@
   display: block;
 }
 
+/* Two-column layout grid */
+.bookingGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Selected Menu Column */
+.menuReviewSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 6.5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 248, 240, 0.1);
+  padding-bottom: 0.8rem;
+}
+
+.sectionHeader h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-gold-light);
+}
+
+.clearBtn {
+  background: transparent;
+  border: none;
+  color: #c62828;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.clearBtn:hover {
+  background: rgba(198, 40, 40, 0.1);
+}
+
+.selectedList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 550px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(214, 175, 55, 0.2) transparent;
+}
+
+.selectedList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.selectedList::-webkit-scrollbar-thumb {
+  background: rgba(214, 175, 55, 0.2);
+  border-radius: 3px;
+}
+
+.selectedCard {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  border-radius: var(--radius-sm);
+  gap: 1rem;
+  background: rgba(45, 29, 26, 0.35);
+  border: 1px solid rgba(214, 175, 55, 0.1);
+  transition: var(--transition-smooth);
+}
+
+.selectedCard:hover {
+  border-color: rgba(214, 175, 55, 0.25);
+  background: rgba(45, 29, 26, 0.5);
+}
+
+.cardImageWrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardDetails {
+  flex-grow: 1;
+}
+
+.cardDetails h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-cream);
+  margin-bottom: 0.2rem;
+}
+
+.categoryBadge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.removeBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-cream);
+  opacity: 0.5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+}
+
+.removeBtn:hover {
+  opacity: 1;
+  color: #ef5350;
+  background: rgba(239, 83, 80, 0.08);
+}
+
+.addMoreWrapper {
+  margin-top: 0.5rem;
+}
+
+/* Empty Selection state */
+.emptySelection {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: rgba(45, 29, 26, 0.2);
+  border: 1px dashed rgba(214, 175, 55, 0.15);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emptyIcon {
+  color: var(--color-gold);
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.emptySelection h3 {
+  font-size: 1.2rem;
+  color: var(--color-gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.emptySelection p {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+/* Form Column */
+.formSection {
+  width: 100%;
+}
+
+/* Responsive Breakpoints */
 @media (max-width: 968px) {
   .headerSection {
     height: 35vh;
@@ -62,5 +239,15 @@
   
   .headerContent h1 {
     font-size: 2.8rem;
+  }
+
+  .bookingGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .menuReviewSection {
+    position: relative;
+    top: 0;
   }
 }

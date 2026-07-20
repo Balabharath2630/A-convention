@@ -1,10 +1,10 @@
 // src/components/MenuCard/MenuCard.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { IndianRupee, Flame } from 'lucide-react';
+import { Flame } from 'lucide-react';
 import styles from './MenuCard.module.css';
 
-const MenuCard = ({ item }) => {
+const MenuCard = ({ item, isSelected, onToggleSelect }) => {
   return (
     <motion.div 
       className={`${styles.card} glass-card`}
@@ -47,11 +47,17 @@ const MenuCard = ({ item }) => {
         </div>
 
         <div className={styles.footerRow}>
-          <div className={styles.priceContainer}>
-            <IndianRupee size={16} className={styles.rupeeIcon} />
-            <span className={styles.price}>{item.price}</span>
-            <span className={styles.perPlate}>/ plate</span>
-          </div>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleSelect(item);
+            }}
+            className={`${styles.selectBtn} ${isSelected ? styles.selected : ''}`}
+            disabled={!item.available}
+          >
+            {isSelected ? 'Added ✓' : 'Add to My Menu'}
+          </button>
         </div>
       </div>
     </motion.div>
