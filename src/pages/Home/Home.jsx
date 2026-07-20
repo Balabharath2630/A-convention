@@ -63,7 +63,7 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <span className={styles.goldSubtitle}>Est. 2011</span>
+              <span className={styles.goldSubtitle}>Est. 2019</span>
               <h2 className="text-gold-gradient" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Elegance In Every Flavor</h2>
               <p style={{ marginBottom: '1.2rem' }}>
                 At ARUN CATERERS, we elevate events from ordinary to unforgettable. Deeply rooted in the authentic tastes of Telugu cuisine, we combine centuries-old culinary traditions with modern gourmet presentations.
