@@ -96,7 +96,9 @@ Please get back to me.`;
                 <Mail size={24} color="#D4AF37" />
               </div>
               <h3>Email Inquiry</h3>
-              <p>info@aruncaterers.com</p>
+              <p>
+                <a href="mailto:aruncaterersofficial@gmail.com">aruncaterersofficial@gmail.com</a>
+              </p>
               <span>Write us for partnerships</span>
             </motion.div>
 
@@ -205,7 +207,7 @@ Please get back to me.`;
                   <h3>Headquarters & Master Kitchen</h3>
                   <div className={styles.addressRow}>
                     <MapPin size={24} className={styles.mapIcon} />
-                    <p>Arundalpet, Guntur, Andhra Pradesh - 522002</p>
+                    <p>Amaravathi Road, Guntur, Andhra Pradesh, India</p>
                   </div>
                   <div className={styles.infoRow}>
                     <p><strong>Note:</strong> We accept in-person consultations by appointments only. To request a food tasting session, please book at least 3 days in advance.</p>

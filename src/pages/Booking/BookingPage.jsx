@@ -1,34 +1,12 @@
 // src/pages/Booking/BookingPage.jsx
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Trash2, ShoppingBag, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { BookOpen, ExternalLink } from 'lucide-react';
+import menuPdf from '../../assets/menu/Arun-Caterers-Menu.pdf';
 import BookingForm from '../../components/BookingForm/BookingForm';
 import styles from './BookingPage.module.css';
 
 const BookingPage = () => {
-  const [selectedItems, setSelectedItems] = useState([]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('selected_catering_menu');
-    if (saved) {
-      setSelectedItems(JSON.parse(saved));
-    }
-  }, []);
-
-  const handleRemoveItem = (itemId) => {
-    const updated = selectedItems.filter((item) => item.id !== itemId);
-    setSelectedItems(updated);
-    localStorage.setItem('selected_catering_menu', JSON.stringify(updated));
-    window.dispatchEvent(new Event('selected_menu_updated'));
-  };
-
-  const handleClearMenu = () => {
-    setSelectedItems([]);
-    localStorage.removeItem('selected_catering_menu');
-    window.dispatchEvent(new Event('selected_menu_updated'));
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -53,78 +31,30 @@ const BookingPage = () => {
         <div className="container">
           <div className={styles.bookingGrid}>
             
-            {/* Left Column: Selected Menu Review */}
+            {/* Left Column: Catering Menu Card */}
             <div className={styles.menuReviewSection}>
-              <div className={styles.sectionHeader}>
-                <h2>Your Selected Menu</h2>
-                {selectedItems.length > 0 && (
-                  <button onClick={handleClearMenu} className={styles.clearBtn}>
-                    Clear All
-                  </button>
-                )}
+              <div className={`${styles.menuCard} glass-card`}>
+                <BookOpen size={48} className={styles.menuIcon} />
+                <h3>Catering Menu</h3>
+                <p>
+                  Please review our complete catering menu before submitting your booking request. Mention your preferred package or dishes in the booking form, and our team will contact you with a customized quotation.
+                </p>
+                <a 
+                  href={menuPdf} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn btn-gold"
+                  style={{ marginTop: '1.5rem', width: '100%', justifyContent: 'center' }}
+                >
+                  <ExternalLink size={18} />
+                  View Catering Menu
+                </a>
               </div>
-
-              <AnimatePresence mode="popLayout">
-                {selectedItems.length > 0 ? (
-                  <div className={styles.selectedList}>
-                    {selectedItems.map((item) => (
-                      <motion.div
-                        key={item.id}
-                        layout
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.3 }}
-                        className={`${styles.selectedCard} glass-card`}
-                      >
-                        <div className={styles.cardImageWrapper}>
-                          <img src={item.image} alt={item.name} className={styles.cardImage} />
-                        </div>
-                        <div className={styles.cardDetails}>
-                          <h3>{item.name}</h3>
-                          <span className={styles.categoryBadge}>{item.category}</span>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => handleRemoveItem(item.id)}
-                          className={styles.removeBtn}
-                          aria-label={`Remove ${item.name}`}
-                        >
-                          <Trash2 size={18} />
-                        </button>
-                      </motion.div>
-                    ))}
-                    
-                    <div className={styles.addMoreWrapper}>
-                      <Link to="/menu" className="btn btn-outline btn-sm" style={{ width: '100%', justifyContent: 'center' }}>
-                        <ArrowLeft size={16} style={{ marginRight: '6px' }} />
-                        Add More Dishes
-                      </Link>
-                    </div>
-                  </div>
-                ) : (
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className={styles.emptySelection}
-                  >
-                    <ShoppingBag size={48} className={styles.emptyIcon} />
-                    <h3>Your Menu is Empty</h3>
-                    <p>Select premium dishes from our menu to request a custom catering quotation proposal.</p>
-                    <Link to="/menu" className="btn btn-gold btn-sm" style={{ marginTop: '1.2rem' }}>
-                      Browse Catering Menu
-                    </Link>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
 
             {/* Right Column: Booking Form */}
             <div className={styles.formSection}>
-              <BookingForm 
-                selectedItems={selectedItems} 
-                onClearMenu={handleClearMenu} 
-              />
+              <BookingForm />
             </div>
 
           </div>
@@ -135,3 +65,4 @@ const BookingPage = () => {
 };
 
 export default BookingPage;
+

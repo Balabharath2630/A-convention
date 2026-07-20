@@ -17,7 +17,7 @@ const EVENT_TYPES = [
   'Other'
 ];
 
-const BookingForm = ({ selectedItems = [], onClearMenu }) => {
+const BookingForm = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: {
       guests: 100
@@ -25,11 +25,6 @@ const BookingForm = ({ selectedItems = [], onClearMenu }) => {
   });
 
   const onSubmit = (data) => {
-    if (selectedItems.length === 0) {
-      alert("Please select at least one dish from the menu to request a proposal.");
-      return;
-    }
-
     // 1. Save Booking to LocalStorage (for Admin page accessibility)
     const storedBookings = localStorage.getItem('aruncaterers_bookings');
     const bookings = storedBookings ? JSON.parse(storedBookings) : [];
@@ -45,7 +40,7 @@ const BookingForm = ({ selectedItems = [], onClearMenu }) => {
       address: data.address,
       servingTime: data.servingTime,
       requirements: data.requirements || 'None',
-      menuItems: selectedItems.map(item => item.name),
+      preferredMenu: data.preferredMenu || 'None',
       createdAt: new Date().toISOString()
     };
 
@@ -67,7 +62,6 @@ const BookingForm = ({ selectedItems = [], onClearMenu }) => {
     localStorage.setItem('aruncaterers_wa_history', JSON.stringify(history));
 
     // 3. Generate Structured WhatsApp message
-    const menuList = selectedItems.map((item, idx) => `${idx + 1}. ${item.name} (${item.category})`).join('\n');
     const message = `Hello ARUN CATERERS,
 
 I would like to request a custom catering quotation proposal for my event.
@@ -84,10 +78,10 @@ I would like to request a custom catering quotation proposal for my event.
 - Number of Guests: ${data.guests}
 - Venue Address: ${data.address}
 
-*Selected Menu Dishes (${selectedItems.length} items):*
-${menuList}
+*Preferred Menu / Catering Requirements:*
+${data.preferredMenu || 'None'}
 
-*Additional Requirements:*
+*Special Requests:*
 ${data.requirements || 'None'}
 
 Please share the pricing quote and customized menu options.
@@ -100,11 +94,8 @@ Thank You.`;
     // 4. Open WhatsApp tab
     window.open(whatsappUrl, '_blank');
 
-    // 5. Reset Form & Clear Menu
+    // 5. Reset Form
     reset();
-    if (onClearMenu) {
-      onClearMenu();
-    }
   };
 
   return (
@@ -272,7 +263,7 @@ Thank You.`;
           {errors.address && <span className={styles.errorText}>{errors.address.message}</span>}
         </div>
 
-        {/* Full Row: Additional Requirements */}
+        {/* Full Row: Special Requests */}
         <div className={styles.formGroup}>
           <label htmlFor="requirements">
             <MessageSquare size={16} className={styles.inputIcon} />
@@ -286,26 +277,25 @@ Thank You.`;
           />
         </div>
 
-        {/* Auto-filled Selected Menu Section */}
-        <div className={styles.menuSummaryGroup}>
-          <label className={styles.menuSummaryLabel}>
+        {/* Full Row: Preferred Menu / Catering Requirements */}
+        <div className={styles.formGroup}>
+          <label htmlFor="preferredMenu">
             <ClipboardList size={16} className={styles.inputIcon} />
-            Selected Menu ({selectedItems.length} dishes auto-filled)
+            Preferred Menu / Catering Requirements
           </label>
-          {selectedItems.length > 0 ? (
-            <div className={styles.menuSummaryBox}>
-              {selectedItems.map((item) => (
-                <div key={item.id} className={styles.menuSummaryItem}>
-                  <span className={`${styles.dot} ${item.category === 'Non Veg' ? styles.dotNonVeg : styles.dotVeg}`} />
-                  {item.name}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className={styles.noMenuWarning}>
-              No dishes selected. Please browse the menu and add items to your catering selection first.
-            </div>
-          )}
+          <textarea
+            id="preferredMenu"
+            rows="5"
+            placeholder={`Example:
+Wedding Package
+Veg / Non-Veg
+Live Counters
+Special Dishes
+Custom Requirements`}
+            className={errors.preferredMenu ? styles.inputError : ''}
+            {...register('preferredMenu', { required: 'Preferred menu or catering requirements are required' })}
+          />
+          {errors.preferredMenu && <span className={styles.errorText}>{errors.preferredMenu.message}</span>}
         </div>
 
         {/* Submit Button */}
@@ -315,7 +305,6 @@ Thank You.`;
           style={{ width: '100%', marginTop: '1rem', padding: '1rem' }}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          disabled={selectedItems.length === 0}
         >
           Submit Booking Proposal Request
         </motion.button>

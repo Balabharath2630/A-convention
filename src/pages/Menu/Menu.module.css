@@ -55,158 +55,56 @@
   display: block;
 }
 
-/* Search Bar */
-.filterBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  gap: 2rem;
-}
-
-.searchWrapper {
-  position: relative;
-  flex: 1;
-  max-width: 500px;
-}
-
-.searchIcon {
-  position: absolute;
-  left: 1.2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--color-gold);
-  pointer-events: none;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 0.85rem 1rem 0.85rem 3rem;
-  background: rgba(45, 29, 26, 0.5);
-  border: 1px solid rgba(214, 175, 55, 0.15);
-  border-radius: var(--radius-full);
-  color: var(--color-cream);
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  outline: none;
-  transition: var(--transition-smooth);
-}
-
-.searchInput:focus {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-  background: rgba(45, 29, 26, 0.8);
-}
-
-.filterHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--color-gold-light);
-}
-
-/* Horizontal Tabs */
-.tabsWrapper {
-  overflow-x: auto;
-  margin-bottom: 2.5rem;
-  padding-bottom: 0.5rem;
-  /* hide scrollbars but support scrolling */
-  scrollbar-width: none; /* Firefox */
-}
-
-.tabsWrapper::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
-}
-
-.tabs {
-  display: flex;
-  gap: 0.8rem;
-  white-space: nowrap;
-}
-
-.tabBtn {
-  padding: 0.6rem 1.4rem;
-  background: rgba(255, 248, 240, 0.05);
-  border: 1px solid rgba(214, 175, 55, 0.12);
-  color: var(--color-cream);
-  border-radius: var(--radius-full);
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.tabBtn:hover {
-  background: rgba(212, 175, 55, 0.08);
-  border-color: var(--color-gold);
-}
-
-.activeTab {
-  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold)) !important;
-  color: var(--color-dark-brown) !important;
-  font-weight: 600;
-  border-color: var(--color-gold) !important;
-  box-shadow: var(--shadow-gold);
-}
-
-/* Stats */
-.resultStats {
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.5px;
-}
-
-.resultStats span {
-  color: var(--color-gold);
-  font-weight: 600;
-}
-
-/* Grid Layout */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-/* Empty State */
-.emptyState {
+/* Premium Card */
+.premiumCard {
   text-align: center;
-  padding: 5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(45, 29, 26, 0.3);
-  border: 1px dashed rgba(214, 175, 55, 0.2);
+  padding: 3rem;
   border-radius: var(--radius-md);
-  max-width: 600px;
-  margin: 2rem auto;
+  margin: 0 auto;
+  max-width: 1000px;
+  /* Premium glassmorphic background & shadow are applied by global class .glass-card */
 }
 
-.emptyIcon {
-  color: var(--color-gold);
-  margin-bottom: 1.5rem;
-  opacity: 0.7;
-}
-
-.emptyState h3 {
-  font-family: var(--font-sans);
-  font-size: 1.4rem;
+.cardHeading {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
   color: var(--color-gold-light);
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 
-.emptyState p {
-  font-size: 0.95rem;
-  opacity: 0.7;
-  max-width: 450px;
+.cardDescription {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  color: rgba(255, 248, 240, 0.85);
+  max-width: 800px;
+  margin: 0 auto 2.5rem auto;
   line-height: 1.6;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+/* PDF Container & Viewer */
+.pdfContainer {
+  position: relative;
+  width: 100%;
+  height: 900px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-glass);
+  border: 1px solid rgba(214, 175, 55, 0.15);
+  background-color: var(--color-dark-brown-light);
+}
+
+.pdfViewer {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 /* Responsive */
@@ -218,42 +116,25 @@
   .headerContent h1 {
     font-size: 2.8rem;
   }
-  
-  .filterBar {
-    flex-direction: column;
-    align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .premiumCard {
+    padding: 2.5rem 1.5rem;
+  }
+  .cardHeading {
+    font-size: 2rem;
+  }
+  .cardDescription {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  .buttonGroup {
     gap: 1rem;
+    margin-bottom: 2.5rem;
   }
-  
-  .searchWrapper {
-    max-width: 100%;
-  }
-  
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+  .pdfContainer {
+    height: 600px;
   }
 }
 
-@media (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-}
-
-.floatingSummary {
-  position: fixed;
-  bottom: 2.5rem;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  pointer-events: none;
-}
-
-.floatingSummary button {
-  pointer-events: auto;
-}

@@ -34,10 +34,10 @@ const Footer = () => {
             ARUN CATERERS specializes in authentic Telugu catering for weddings, receptions, birthdays, corporate events, housewarming ceremonies, and all special occasions. We serve delicious traditional cuisine with exceptional service across Guntur and surrounding areas.
           </p>
           <div className={styles.socials}>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
+            <a href="https://www.instagram.com/aruncaterersofficial?igsh=MTh2dmx4bWJ4ZWxsdA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
+            <a href="https://www.facebook.com/share/1JW2PdwdG3/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
           </div>
@@ -63,7 +63,7 @@ const Footer = () => {
           <ul className={styles.contactList}>
             <li>
               <MapPin size={22} className={styles.contactIcon} />
-              <span>Arundalpet, Guntur, Andhra Pradesh, India</span>
+              <span>Amaravathi Road, Guntur, Andhra Pradesh, India</span>
             </li>
             <li>
               <Phone size={18} className={styles.contactIcon} />
@@ -71,7 +71,7 @@ const Footer = () => {
             </li>
             <li>
               <Mail size={18} className={styles.contactIcon} />
-              <a href="mailto:info@aruncaterers.com">info@aruncaterers.com</a>
+              <a href="mailto:aruncaterersofficial@gmail.com">aruncaterersofficial@gmail.com</a>
             </li>
           </ul>
           
@@ -101,6 +101,11 @@ const Footer = () => {
             <span className={styles.divider}>|</span>
             <a href="#">Terms & Conditions</a>
           </div>
+        </div>
+        <div className={styles.developerCreditContainer}>
+          <p className={styles.developerCredit}>
+            Developed by <span className={styles.highlight}>BD WEB TECHNOLOGIES</span> | Contact: <a href="tel:+918096473568" className={styles.phoneLink}>+91 8096473568</a>
+          </p>
         </div>
       </div>
     </footer>

@@ -697,7 +697,7 @@ const Admin = () => {
                       </div>
                       <div className={styles.infoDetailItem}>
                         <span>Location:</span>
-                        <strong>Guntur, Andhra Pradesh</strong>
+                        <strong>Amaravathi Road, Guntur, Andhra Pradesh, India</strong>
                       </div>
                       <div className={styles.infoDetailItem}>
                         <span>WhatsApp Number:</span>
@@ -705,7 +705,7 @@ const Admin = () => {
                       </div>
                       <div className={styles.infoDetailItem}>
                         <span>Contact Email:</span>
-                        <strong>info@aruncaterers.com</strong>
+                        <strong>aruncaterersofficial@gmail.com</strong>
                       </div>
                     </div>
                   </div>
