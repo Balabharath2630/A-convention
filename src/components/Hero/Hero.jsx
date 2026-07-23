@@ -14,8 +14,8 @@ const HERO_SLIDES = [
   {
     image: heroImage,
     title: 'Premium Indian Catering',
-    subtitle: 'ARUN CATERERS Guntur',
-    caption: 'Crafting Royal Gastronomical Journeys Since 2011'
+    subtitle: 'ARUN CATERERS',
+    caption: 'Crafting Memorable Catering Experiences'
   },
   {
     image: biryaniImage,

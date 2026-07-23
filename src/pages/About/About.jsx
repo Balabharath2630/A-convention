@@ -131,23 +131,23 @@ const About = () => {
               transition={{ duration: 0.8 }}
             >
               <span className={styles.goldSubtitle}>Who We Are</span>
-              <h2 className="text-gold-gradient" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Crafting Royal Gastronomical Journeys</h2>
+              <h2 className="text-gold-gradient" style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>About Arun Caterers</h2>
               <p style={{ marginBottom: '1.2rem' }}>
-                ARUN CATERERS is a premier Telugu wedding and event catering company founded in Guntur with a simple vision: to serve authentic, top-tier Telugu dishes with the elegance of modern royal dining. Over the last 15 years, we have grown from a small family recipe kitchen into a trusted catering partner for thousands of families and corporates across the state.
+                ARUN CATERERS has been serving weddings, birthdays, housewarming functions, and other special events since 2019. We focus on preparing fresh, tasty food and providing friendly service to make every event memorable.
               </p>
               <p style={{ marginBottom: '2.2rem', opacity: 0.85 }}>
-                Our operations are driven by a commitment to absolute purity, pristine presentation, and a relentless focus on customer satisfaction. Every ingredient is scrutinized, every dish is prepared with passion, and every setup is organized to wow your guests at first glance.
+                Our team works closely with every customer to understand their requirements and serve quality food with proper hygiene. Whether it is a small family gathering or a large wedding, we are committed to making your event a success.
               </p>
 
               {/* Mission & Vision Row */}
               <div className={styles.mvRow}>
                 <div className={styles.mvCard}>
-                  <h3 className={styles.mvTitle}>Our Mission</h3>
-                  <p className={styles.mvText}>To preserve traditional culinary arts, sourcing pure ingredients to deliver a premium, hygienic dining experience for every event.</p>
+                  <h3 className={styles.mvTitle}>OUR MISSION</h3>
+                  <p className={styles.mvText}>To serve fresh and delicious food with quality, hygiene, and reliable service at every event.</p>
                 </div>
                 <div className={styles.mvCard}>
-                  <h3 className={styles.mvTitle}>Our Vision</h3>
-                  <p className={styles.mvText}>To set the benchmark for authentic Indian catering globally, blending authentic heritage tastes with premium service standards.</p>
+                  <h3 className={styles.mvTitle}>OUR VISION</h3>
+                  <p className={styles.mvText}>To become a trusted catering service known for good food, customer satisfaction, and memorable events.</p>
                 </div>
               </div>
             </motion.div>

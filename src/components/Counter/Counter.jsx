@@ -4,10 +4,10 @@ import { motion, useInView } from 'framer-motion';
 import styles from './Counter.module.css';
 
 const STATS_DATA = [
-  { id: 1, target: 1000, suffix: '+', label: 'Events Executed' },
+  { id: 1, target: 801, suffix: '+', label: 'Events Executed' },
   { id: 2, target: 500, suffix: '+', label: 'Happy Families' },
-  { id: 3, target: 50, suffix: '+', label: 'Catering Menu Items' },
-  { id: 4, target: 15, suffix: '+', label: 'Years Experience' }
+  { id: 3, target: 400, suffix: '+', label: 'Menu Items' },
+  { id: 4, target: 5, suffix: '+', label: 'Years Experience' }
 ];
 
 const StatItem = ({ target, suffix, label }) => {

@@ -50,7 +50,6 @@ const Footer = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/menu">Catering Menu</Link></li>
-            <li><Link to="/gallery">Gallery</Link></li>
             <li><Link to="/booking">Booking Form</Link></li>
             <li><Link to="/contact">Contact Info</Link></li>
             <li><Link to="/admin">Admin Panel</Link></li>
@@ -104,7 +103,7 @@ const Footer = () => {
         </div>
         <div className={styles.developerCreditContainer}>
           <p className={styles.developerCredit}>
-            Developed by <span className={styles.highlight}>BD WEB TECHNOLOGIES</span> | Contact: <a href="tel:+918096473568" className={styles.phoneLink}>+91 8096473568</a>
+            Developed by <span className={styles.highlight}>BD WEB TECHNOLOGIES</span>
           </p>
         </div>
       </div>

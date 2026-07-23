@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Lock, LayoutDashboard, Utensils, CalendarDays, History, LogOut,
-  Plus, Edit2, Trash2, ToggleLeft, ToggleRight, Check, X, Info, Image
+  Plus, Edit2, Trash2, ToggleLeft, ToggleRight, Check, X, Info
 } from 'lucide-react';
 import logoWhite from '../../assets/logo/logo-white.png';
-import { OWNER_WHATSAPP, ADMIN_CREDENTIALS, INITIAL_MENU_ITEMS, GALLERY_ITEMS } from '../../config/constants';
+import { OWNER_WHATSAPP, ADMIN_CREDENTIALS, INITIAL_MENU_ITEMS } from '../../config/constants';
 import styles from './Admin.module.css';
 
 const Admin = () => {
@@ -24,12 +24,7 @@ const Admin = () => {
   const [bookings, setBookings] = useState([]);
   const [waHistory, setWaHistory] = useState([]);
 
-  // Gallery Management State
-  const [galleryItems, setGalleryItems] = useState([]);
-  const [galleryModalOpen, setGalleryModalOpen] = useState(false);
-  const [galleryFormTitle, setGalleryFormTitle] = useState('');
-  const [galleryFormImage, setGalleryFormImage] = useState('');
-  const [galleryFormCategory, setGalleryFormCategory] = useState('food');
+
 
   // Form Modal States (Add/Edit Item)
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,44 +68,10 @@ const Admin = () => {
     const storedWa = localStorage.getItem('aruncaterers_wa_history');
     setWaHistory(storedWa ? JSON.parse(storedWa) : []);
 
-    // 4. Gallery items
-    const storedGallery = localStorage.getItem('aruncaterers_gallery');
-    if (storedGallery) {
-      setGalleryItems(JSON.parse(storedGallery));
-    } else {
-      localStorage.setItem('aruncaterers_gallery', JSON.stringify(GALLERY_ITEMS));
-      setGalleryItems(GALLERY_ITEMS);
-    }
+
   };
 
-  const handleDeleteGalleryItem = (id) => {
-    if (window.confirm('Are you sure you want to delete this gallery item?')) {
-      const updated = galleryItems.filter(item => item.id !== id);
-      setGalleryItems(updated);
-      localStorage.setItem('aruncaterers_gallery', JSON.stringify(updated));
-    }
-  };
 
-  const handleAddGalleryItem = (e) => {
-    e.preventDefault();
-    if (!galleryFormTitle || !galleryFormImage) {
-      alert('Please fill out all required fields (Title, Image URL).');
-      return;
-    }
-    const newItem = {
-      id: 'g_' + Date.now(),
-      title: galleryFormTitle,
-      category: galleryFormCategory,
-      image: galleryFormImage
-    };
-    const updated = [...galleryItems, newItem];
-    setGalleryItems(updated);
-    localStorage.setItem('aruncaterers_gallery', JSON.stringify(updated));
-    setGalleryFormTitle('');
-    setGalleryFormImage('');
-    setGalleryFormCategory('food');
-    setGalleryModalOpen(false);
-  };
 
   // Auth Submit
   const handleLogin = (e) => {
@@ -352,13 +313,7 @@ const Admin = () => {
                 <span>Bookings ({totalBookingsCount})</span>
               </button>
 
-              <button 
-                className={`${styles.navBtn} ${activeTab === 'gallery' ? styles.activeNavBtn : ''}`}
-                onClick={() => setActiveTab('gallery')}
-              >
-                <Image size={18} />
-                <span>Gallery Management</span>
-              </button>
+
 
               <button 
                 className={`${styles.navBtn} ${activeTab === 'wa_logs' ? styles.activeNavBtn : ''}`}
@@ -616,64 +571,7 @@ const Admin = () => {
               </motion.div>
             )}
 
-            {/* Tab: Gallery Management */}
-            {activeTab === 'gallery' && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={styles.tabContent}>
-                <div className={styles.contentHeaderRow}>
-                  <div className={styles.contentHeader}>
-                    <h1>Gallery Management</h1>
-                    <p>Add or remove portfolio and setup images displayed on the client website.</p>
-                  </div>
-                  <button onClick={() => setGalleryModalOpen(true)} className="btn btn-gold btn-sm" style={{ gap: '0.4rem' }}>
-                    <Plus size={16} />
-                    Add Gallery Image
-                  </button>
-                </div>
 
-                <div className={`${styles.tableWrapper} glass-card`}>
-                  {galleryItems.length === 0 ? (
-                    <div className={styles.emptyTableState}>
-                      <Image size={48} className={styles.emptyTableIcon} />
-                      <h3>No Gallery Images Found</h3>
-                      <p>Add new portfolio images to showcase your catering events.</p>
-                    </div>
-                  ) : (
-                    <table className={styles.table}>
-                      <thead>
-                        <tr>
-                          <th>Image Preview</th>
-                          <th>Title</th>
-                          <th>Category</th>
-                          <th style={{ textAlign: 'center' }}>Remove</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {galleryItems.map((item) => (
-                          <tr key={item.id}>
-                            <td>
-                              <img src={item.image} alt={item.title} className={styles.tableThumb} style={{ width: '80px', height: '50px', objectFit: 'cover' }} />
-                            </td>
-                            <td><strong>{item.title}</strong></td>
-                            <td>
-                              <span className={`${styles.badge} ${styles.badgeVeg}`}>
-                                {item.category}
-                              </span>
-                            </td>
-                            <td>
-                              <div className={styles.actionsCell}>
-                                <button onClick={() => handleDeleteGalleryItem(item.id)} className={styles.deleteBtn} aria-label="Delete gallery item">
-                                  <Trash2 size={16} />
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
-              </motion.div>
-            )}
 
             {/* Tab: Website Information */}
             {activeTab === 'info' && (
@@ -848,69 +746,7 @@ const Admin = () => {
         )}
       </AnimatePresence>
 
-      {/* Modal Dialog: Add Gallery Item */}
-      <AnimatePresence>
-        {galleryModalOpen && (
-          <div className={styles.modalOverlay} onClick={() => setGalleryModalOpen(false)}>
-            <motion.div 
-              className={`${styles.modalCard} glass-card`}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className={styles.modalHeader}>
-                <h2>Add New Gallery Image</h2>
-                <button onClick={() => setGalleryModalOpen(false)} className={styles.modalCloseBtn}>
-                  <X size={20} />
-                </button>
-              </div>
 
-              <form onSubmit={handleAddGalleryItem} className={styles.modalForm}>
-                <div className={styles.formGroup}>
-                  <label>Image Title *</label>
-                  <input 
-                    type="text" 
-                    value={galleryFormTitle} 
-                    onChange={(e) => setGalleryFormTitle(e.target.value)} 
-                    placeholder="e.g. Traditional Andhra Feast Setup" 
-                    required 
-                  />
-                </div>
-
-                <div className={styles.formGroup}>
-                  <label>Category *</label>
-                  <select value={galleryFormCategory} onChange={(e) => setGalleryFormCategory(e.target.value)}>
-                    <option value="food">Food</option>
-                    <option value="setup">Setup</option>
-                    <option value="decor">Decor</option>
-                  </select>
-                </div>
-
-                <div className={styles.formGroup}>
-                  <label>Image URL *</label>
-                  <input 
-                    type="text" 
-                    value={galleryFormImage} 
-                    onChange={(e) => setGalleryFormImage(e.target.value)} 
-                    placeholder="e.g. https://images.unsplash.com/... or /src/assets/hero/biryani.jpeg" 
-                    required 
-                  />
-                </div>
-
-                <div className={styles.modalActions}>
-                  <button type="button" onClick={() => setGalleryModalOpen(false)} className="btn btn-outline btn-sm">
-                    Cancel
-                  </button>
-                  <button type="submit" className="btn btn-gold btn-sm">
-                    Add Image
-                  </button>
-                </div>
-              </form>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
     </div>
   );

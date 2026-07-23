@@ -12,7 +12,6 @@ import logoWhite from './assets/logo/logo-white.png';
 const Home = lazy(() => import('./pages/Home/Home'));
 const About = lazy(() => import('./pages/About/About'));
 const Menu = lazy(() => import('./pages/Menu/Menu'));
-const GalleryPage = lazy(() => import('./pages/Gallery/GalleryPage'));
 const BookingPage = lazy(() => import('./pages/Booking/BookingPage'));
 const Contact = lazy(() => import('./pages/Contact/Contact'));
 const Admin = lazy(() => import('./pages/Admin/Admin'));
@@ -143,7 +142,6 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/menu" element={<Menu />} />
-                  <Route path="/gallery" element={<GalleryPage />} />
                   <Route path="/booking" element={<BookingPage />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/admin" element={<Admin />} />

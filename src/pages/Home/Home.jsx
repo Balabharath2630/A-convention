@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Flame, Heart, Award, ShieldCheck } from 'lucide-react';
 import Hero from '../../components/Hero/Hero';
 import Counter from '../../components/Counter/Counter';
-import Testimonial from '../../components/Testimonial/Testimonial';
 import mealsImage from '../../assets/hero/meals.jpeg';
 import styles from './Home.module.css';
 
@@ -130,9 +129,6 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Testimonials Auto Carousel */}
-      <Testimonial />
 
       {/* Call To Action Banner */}
       <section className={styles.ctaBanner}>
