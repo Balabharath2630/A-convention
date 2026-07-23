@@ -1,6 +1,7 @@
 // src/pages/About/About.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { 
   CheckCircle2, Compass, Award, ShieldCheck, Soup,
   Clock, Flame, HeartHandshake, Gift, Briefcase, Home, Landmark 
@@ -92,6 +93,20 @@ const About = () => {
       transition={{ duration: 0.6 }}
       className={styles.aboutPage}
     >
+      <Helmet>
+        <title>About ARUN CATERERS | Trusted Catering Services</title>
+        <meta name="description" content="Learn about ARUN CATERERS, our experience, commitment to quality food, hygiene and authentic Telugu catering." />
+        <link rel="canonical" href="https://aruncaterers.co.in/about" />
+        <meta property="og:title" content="About ARUN CATERERS | Trusted Catering Services" />
+        <meta property="og:description" content="Learn about ARUN CATERERS, our experience, commitment to quality food, hygiene and authentic Telugu catering." />
+        <meta property="og:url" content="https://aruncaterers.co.in/about" />
+        <meta property="og:image" content="https://aruncaterers.co.in/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About ARUN CATERERS | Trusted Catering Services" />
+        <meta name="twitter:description" content="Learn about ARUN CATERERS, our experience, commitment to quality food, hygiene and authentic Telugu catering." />
+        <meta name="twitter:image" content="https://aruncaterers.co.in/logo.png" />
+      </Helmet>
+
       {/* Header Banner */}
       <section className={styles.headerSection}>
         <div className={styles.headerOverlay} />

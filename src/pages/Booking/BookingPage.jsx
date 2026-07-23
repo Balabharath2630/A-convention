@@ -1,6 +1,7 @@
 // src/pages/Booking/BookingPage.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { BookOpen, ExternalLink } from 'lucide-react';
 import menuPdf from '../../assets/menu/Arun-Caterers-Menu.pdf';
 import BookingForm from '../../components/BookingForm/BookingForm';
@@ -15,6 +16,20 @@ const BookingPage = () => {
       transition={{ duration: 0.6 }}
       className={styles.page}
     >
+      <Helmet>
+        <title>Book Catering Services | ARUN CATERERS</title>
+        <meta name="description" content="Book ARUN CATERERS for weddings, birthdays, receptions, corporate events and special occasions in Guntur." />
+        <link rel="canonical" href="https://aruncaterers.co.in/booking" />
+        <meta property="og:title" content="Book Catering Services | ARUN CATERERS" />
+        <meta property="og:description" content="Book ARUN CATERERS for weddings, birthdays, receptions, corporate events and special occasions in Guntur." />
+        <meta property="og:url" content="https://aruncaterers.co.in/booking" />
+        <meta property="og:image" content="https://aruncaterers.co.in/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Book Catering Services | ARUN CATERERS" />
+        <meta name="twitter:description" content="Book ARUN CATERERS for weddings, birthdays, receptions, corporate events and special occasions in Guntur." />
+        <meta name="twitter:image" content="https://aruncaterers.co.in/logo.png" />
+      </Helmet>
+
       {/* Header Banner */}
       <section className={styles.headerSection}>
         <div className={styles.headerOverlay} />

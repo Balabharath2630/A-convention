@@ -2,6 +2,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Phone, Mail, MessageSquare, Clock, MapPin, Send, Compass } from 'lucide-react';
 import { OWNER_WHATSAPP } from '../../config/constants';
 import styles from './Contact.module.css';
@@ -43,6 +44,20 @@ Please get back to me.`;
       transition={{ duration: 0.6 }}
       className={styles.contactPage}
     >
+      <Helmet>
+        <title>Contact ARUN CATERERS | Guntur</title>
+        <meta name="description" content="Contact ARUN CATERERS for catering enquiries, bookings and event planning in Guntur, Andhra Pradesh." />
+        <link rel="canonical" href="https://aruncaterers.co.in/contact" />
+        <meta property="og:title" content="Contact ARUN CATERERS | Guntur" />
+        <meta property="og:description" content="Contact ARUN CATERERS for catering enquiries, bookings and event planning in Guntur, Andhra Pradesh." />
+        <meta property="og:url" content="https://aruncaterers.co.in/contact" />
+        <meta property="og:image" content="https://aruncaterers.co.in/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact ARUN CATERERS | Guntur" />
+        <meta name="twitter:description" content="Contact ARUN CATERERS for catering enquiries, bookings and event planning in Guntur, Andhra Pradesh." />
+        <meta name="twitter:image" content="https://aruncaterers.co.in/logo.png" />
+      </Helmet>
+
       {/* Header Banner */}
       <section className={styles.headerSection}>
         <div className={styles.headerOverlay} />

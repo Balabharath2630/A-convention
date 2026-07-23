@@ -2,6 +2,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Phone, ArrowUp } from 'lucide-react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -68,6 +69,11 @@ function App() {
 
   return (
     <>
+      {isAdminRoute && (
+        <Helmet>
+          <meta name="robots" content="noindex,nofollow" />
+        </Helmet>
+      )}
       {/* Cinematic Logo Loader */}
       <AnimatePresence>
         {loading && (

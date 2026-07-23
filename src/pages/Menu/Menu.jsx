@@ -1,6 +1,7 @@
 // src/pages/Menu/Menu.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { ExternalLink, Download } from 'lucide-react';
 import menuPdf from '../../assets/menu/Arun-Caterers-Menu.pdf';
 import styles from './Menu.module.css';
@@ -14,6 +15,20 @@ const Menu = () => {
       transition={{ duration: 0.6 }}
       className={styles.menuPage}
     >
+      <Helmet>
+        <title>Our Catering Menu | ARUN CATERERS</title>
+        <meta name="description" content="Browse our catering menu featuring traditional Telugu dishes, biryanis, desserts, live counters and special event menus." />
+        <link rel="canonical" href="https://aruncaterers.co.in/menu" />
+        <meta property="og:title" content="Our Catering Menu | ARUN CATERERS" />
+        <meta property="og:description" content="Browse our catering menu featuring traditional Telugu dishes, biryanis, desserts, live counters and special event menus." />
+        <meta property="og:url" content="https://aruncaterers.co.in/menu" />
+        <meta property="og:image" content="https://aruncaterers.co.in/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Our Catering Menu | ARUN CATERERS" />
+        <meta name="twitter:description" content="Browse our catering menu featuring traditional Telugu dishes, biryanis, desserts, live counters and special event menus." />
+        <meta name="twitter:image" content="https://aruncaterers.co.in/logo.png" />
+      </Helmet>
+
       {/* Header Banner */}
       <section className={styles.headerSection}>
         <div className={styles.headerOverlay} />

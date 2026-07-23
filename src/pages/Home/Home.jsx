@@ -2,6 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Flame, Heart, Award, ShieldCheck } from 'lucide-react';
 import Hero from '../../components/Hero/Hero';
 import Counter from '../../components/Counter/Counter';
@@ -34,6 +35,20 @@ const Home = () => {
       transition={{ duration: 0.6 }}
       style={{ backgroundColor: '#1E1210' }}
     >
+      <Helmet>
+        <title>ARUN CATERERS | Wedding & Event Catering Services in Guntur</title>
+        <meta name="description" content="ARUN CATERERS provides premium wedding, birthday, reception, housewarming and corporate catering services in Guntur with authentic Telugu cuisine and professional hospitality." />
+        <link rel="canonical" href="https://aruncaterers.co.in/" />
+        <meta property="og:title" content="ARUN CATERERS | Wedding & Event Catering Services in Guntur" />
+        <meta property="og:description" content="ARUN CATERERS provides premium wedding, birthday, reception, housewarming and corporate catering services in Guntur with authentic Telugu cuisine and professional hospitality." />
+        <meta property="og:url" content="https://aruncaterers.co.in/" />
+        <meta property="og:image" content="https://aruncaterers.co.in/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ARUN CATERERS | Wedding & Event Catering Services in Guntur" />
+        <meta name="twitter:description" content="ARUN CATERERS provides premium wedding, birthday, reception, housewarming and corporate catering services in Guntur with authentic Telugu cuisine and professional hospitality." />
+        <meta name="twitter:image" content="https://aruncaterers.co.in/logo.png" />
+      </Helmet>
+
       {/* Cinematic Slideshow Hero */}
       <Hero />
 
